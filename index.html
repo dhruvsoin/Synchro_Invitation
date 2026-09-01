@@ -185,11 +185,11 @@
 
       <!-- API Key Modal / Popover -->
       <div class="ai-config-popover" id="ai-config-popover">
-        <span class="popover-title">Groq Cloud LLM Setup</span>
-        <p class="popover-desc">Configured with <code>qwen/qwen3.8-27b</code> + Whisper Voice Engine.</p>
+        <span class="popover-title"><i class="fa-solid fa-bolt" style="color: #00D2FF;"></i> Groq Cloud LLM Setup</span>
+        <p class="popover-desc">Optional: Enter your Groq API key for live <code>llama-3.3-70b-versatile</code> and Whisper speech recognition. Leave empty to use the built-in zero-cloud neural engine.</p>
         <div class="popover-input-group">
           <input type="password" id="input-groq-key" class="popover-input" placeholder="gsk_..." />
-          <button id="btn-save-groq-key" class="popover-btn">Save</button>
+          <button id="btn-save-groq-key" class="popover-btn">Save Key</button>
         </div>
       </div>
 
@@ -285,7 +285,7 @@
               <span class="regal-pass-serial">PASS NO. KJU-ST26-VIP</span>
             </div>
             <input type="text" id="inv-custom-guest-name" class="regal-guest-input" value="Rev. Fr. Dr. Augustine George CMI" placeholder="Enter Invitee Name..." />
-            <span class="regal-admit-note">Principal, Kristu Jayanti University • Formal Inauguration Ceremony</span>
+            <span id="inv-guest-designation" class="regal-admit-note">Vice Chancellor, Kristu Jayanti (Deemed to be University) • Formal Inauguration Ceremony</span>
           </div>
 
           <!-- Master Date & Venue Grid -->

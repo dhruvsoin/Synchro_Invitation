@@ -54,6 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     onStreamComplete: (fullResponse) => {
       updateLastAssistantMessage(fullResponse);
+      finalizeAssistantMessage();
     },
     onVoiceInputResult: (transcript) => {
       const inputEl = document.getElementById("ai-text-input");
@@ -227,12 +228,13 @@ document.addEventListener("DOMContentLoaded", () => {
     appendUserMessage(text);
     appendAssistantMessagePlaceholder();
 
-    aiAssistant.ask(text).then(() => {
-      finalizeAssistantMessage();
-    });
-
     const input = document.getElementById("ai-text-input");
     if (input) input.value = "";
+
+    aiAssistant.ask(text).catch(err => {
+      console.warn("AI Query error:", err);
+      finalizeAssistantMessage();
+    });
   }
 
   /* ==========================================================================
@@ -435,24 +437,170 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
-    // 12. Export Invitation Pass Button
+    // 12. Stealth VIP Presets (Keys 1-9 and URL ?to=...)
+    const VIP_PRESETS = {
+      "1": {
+        name: "Rev. Fr. Santhosh Mathenkunnel, CMI",
+        role: "Chancellor, Kristu Jayanti (Deemed to be University)"
+      },
+      "2": {
+        name: "Rev. Fr. Dr. Augustine George, CMI",
+        role: "Vice Chancellor, Kristu Jayanti (Deemed to be University) • Formal Inauguration Ceremony"
+      },
+      "3": {
+        name: "Rev. Fr. Dr. Lijo P. Thomas, CMI",
+        role: "Pro Vice Chancellor, Kristu Jayanti (Deemed to be University)"
+      },
+      "4": {
+        name: "Dr. Aloysius Edward J.",
+        role: "Registrar, Kristu Jayanti (Deemed to be University)"
+      },
+      "5": {
+        name: "Dr. Sevuga Pandian A",
+        role: "Dean, School of Computational and Physical Sciences"
+      },
+      "6": {
+        name: "Dr. K. Kalaiselvi",
+        role: "Head of the Department, Department of Computational Studies"
+      },
+      "7": {
+        name: "Dr. Stephen A",
+        role: "Program Coordinator, Department of Computational Studies"
+      },
+      "8": {
+        name: "Dr. Shiva Prasad",
+        role: "Faculty Coordinator, Department of Computational Studies"
+      },
+      "9": {
+        name: "Prof. Ritika Shrimali",
+        role: "Faculty Coordinator, Department of Computational Studies"
+      },
+      // Aliases for URL parameters (?to=...)
+      "chancellor": {
+        name: "Rev. Fr. Santhosh Mathenkunnel, CMI",
+        role: "Chancellor, Kristu Jayanti (Deemed to be University)"
+      },
+      "santhosh": {
+        name: "Rev. Fr. Santhosh Mathenkunnel, CMI",
+        role: "Chancellor, Kristu Jayanti (Deemed to be University)"
+      },
+      "vc": {
+        name: "Rev. Fr. Dr. Augustine George, CMI",
+        role: "Vice Chancellor, Kristu Jayanti (Deemed to be University) • Formal Inauguration Ceremony"
+      },
+      "augustine": {
+        name: "Rev. Fr. Dr. Augustine George, CMI",
+        role: "Vice Chancellor, Kristu Jayanti (Deemed to be University) • Formal Inauguration Ceremony"
+      },
+      "provc": {
+        name: "Rev. Fr. Dr. Lijo P. Thomas, CMI",
+        role: "Pro Vice Chancellor, Kristu Jayanti (Deemed to be University)"
+      },
+      "lijo": {
+        name: "Rev. Fr. Dr. Lijo P. Thomas, CMI",
+        role: "Pro Vice Chancellor, Kristu Jayanti (Deemed to be University)"
+      },
+      "registrar": {
+        name: "Dr. Aloysius Edward J.",
+        role: "Registrar, Kristu Jayanti (Deemed to be University)"
+      },
+      "aloysius": {
+        name: "Dr. Aloysius Edward J.",
+        role: "Registrar, Kristu Jayanti (Deemed to be University)"
+      },
+      "dean": {
+        name: "Dr. Sevuga Pandian A",
+        role: "Dean, School of Computational and Physical Sciences"
+      },
+      "sevuga": {
+        name: "Dr. Sevuga Pandian A",
+        role: "Dean, School of Computational and Physical Sciences"
+      },
+      "pandian": {
+        name: "Dr. Sevuga Pandian A",
+        role: "Dean, School of Computational and Physical Sciences"
+      },
+      "hod": {
+        name: "Dr. K. Kalaiselvi",
+        role: "Head of the Department, Department of Computational Studies"
+      },
+      "kalaiselvi": {
+        name: "Dr. K. Kalaiselvi",
+        role: "Head of the Department, Department of Computational Studies"
+      },
+      "stephen": {
+        name: "Dr. Stephen A",
+        role: "Program Coordinator, Department of Computational Studies"
+      },
+      "shiva": {
+        name: "Dr. Shiva Prasad",
+        role: "Faculty Coordinator, Department of Computational Studies"
+      },
+      "ritika": {
+        name: "Prof. Ritika Shrimali",
+        role: "Faculty Coordinator, Department of Computational Studies"
+      }
+    };
+
+    function applyVipPreset(vipKey) {
+      const preset = VIP_PRESETS[vipKey.toLowerCase()];
+      const nameInput = document.getElementById("inv-custom-guest-name");
+      const roleSpan = document.getElementById("inv-guest-designation");
+      if (preset) {
+        if (nameInput) nameInput.value = preset.name;
+        if (roleSpan) roleSpan.textContent = preset.role;
+      }
+    }
+
+    // Check URL parameters on page load
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const toParam = urlParams.get("to");
+      if (toParam) {
+        if (VIP_PRESETS[toParam.toLowerCase()]) {
+          applyVipPreset(toParam.toLowerCase());
+        } else {
+          const nameInput = document.getElementById("inv-custom-guest-name");
+          const roleSpan = document.getElementById("inv-guest-designation");
+          if (nameInput) nameInput.value = toParam;
+          const roleParam = urlParams.get("role");
+          if (roleSpan && roleParam) roleSpan.textContent = roleParam;
+        }
+      }
+    } catch (e) {}
+
+    // Export Invitation Pass Button
     document.getElementById("btn-export-invitation-pass")?.addEventListener("click", () => {
-      const guestName = document.getElementById("inv-custom-guest-name")?.value || "Rev. Fr. Dr. Augustine George CMI";
-      HologramPassEngine.exportPassAsImage(guestName, "Department of Computational Studies", "KJU-ST26-VIP", "Honored Delegate");
+      const guestName = document.getElementById("inv-custom-guest-name")?.value || "Rev. Fr. Dr. Augustine George, CMI";
+      const roleText = document.getElementById("inv-guest-designation")?.textContent || "Department of Computational Studies";
+      HologramPassEngine.exportPassAsImage(guestName, roleText, "KJU-ST26-VIP", "Honored Delegate");
     });
 
-    // 13. Hotkeys: Space for Invitation, Esc for Close
+    // 13. Hotkeys: 1-9 for Stealth VIP Presets, Space for Invitation, Esc for Close, KeyV for Voice
+    let lastKeyVTime = 0;
     window.addEventListener("keydown", (e) => {
       if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") {
         return;
       }
 
+      // Stealth VIP Switcher (Keys 1 to 9)
+      if (["Digit1", "Digit2", "Digit3", "Digit4", "Digit5", "Digit6", "Digit7", "Digit8", "Digit9", "Numpad1", "Numpad2", "Numpad3", "Numpad4", "Numpad5", "Numpad6", "Numpad7", "Numpad8", "Numpad9"].includes(e.code)) {
+        const digit = e.code.replace("Digit", "").replace("Numpad", "");
+        applyVipPreset(digit);
+        return;
+      }
+
       if (e.code === "KeyV") {
         e.preventDefault();
-        // Activate mic directly without opening chat
+        if (e.repeat) return;
+        const now = Date.now();
+        if (now - lastKeyVTime < 350) return;
+        lastKeyVTime = now;
+
         aiAssistant.toggleVoiceListening();
       } else if (e.code === "Space") {
         e.preventDefault();
+        if (e.repeat) return;
         invitationController.toggleReveal();
       } else if (e.code === "Escape") {
         if (document.getElementById("invitation-overlay")?.classList.contains("active")) {

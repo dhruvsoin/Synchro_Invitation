@@ -63,7 +63,14 @@ ${eventsSummary}`;
 Event: ${FEST_INFO.name} — "${FEST_INFO.tagline}" (${FEST_INFO.subtitle})
 Host: ${FEST_INFO.institution}, ${FEST_INFO.school}, ${FEST_INFO.department}
 Dates: ${FEST_INFO.dates} (September 7 to 11, 2026)
-Principal / Patron: Rev. Fr. Dr. Augustine George CMI
+Chancellor: Rev. Fr. Santhosh Mathenkunnel, CMI
+Vice Chancellor & Patron: Rev. Fr. Dr. Augustine George, CMI
+Pro Vice Chancellor: Rev. Fr. Dr. Lijo P. Thomas, CMI
+Registrar: Dr. Aloysius Edward J.
+Dean: Dr. Sevuga Pandian A (School of Computational and Physical Sciences)
+Head of Department (HOD): Dr. K. Kalaiselvi
+Program Coordinator: Dr. Stephen A
+Faculty Coordinators: Dr. Shiva Prasad, Prof. Ritika Shrimali
 Venue: M1 Auditorium (Inauguration) & Specialized Computing Labs
 
 Student Coordinators:
@@ -81,96 +88,128 @@ ${domainsSummary}
 ${scheduleSummary}
 
 === INSTRUCTIONS FOR RESPONSE ===
-1. Persona: Highly intelligent, futuristic, warm, encouraging, and concise. Speak as the official voice of Synchrotech 2026.
-2. Formats: Use clean, concise Markdown with bullet points where appropriate. Keep answers under 3-4 sentences unless detailed event rules/schedules are requested.
-3. If asked about AIML, highlight that it explores neural frontiers, autonomous intelligence, Zero Verdict (solo with AI coins auction) and Overdrive (duo prompt engineering).
-4. If asked how to register or participate, mention the domain QR codes and contact numbers of domain heads.
-5. If asked about the invitation, invite them enthusiastically to Kristu Jayanti University from Sept 7–11, 2026 (Inauguration on 11th Sept at M1 Audi) to "Decode The Spectrum"!`;
+1. Persona: Highly intelligent, friendly, natural, and VERY CONCISE.
+2. Brevity Rule: Keep answers under 1 to 2 short sentences whenever possible so they sound great when read aloud.
+3. Only provide detailed multi-bullet responses if the user explicitly asks for a full schedule or complete domain list.
+4. If asked about contacting faculty coordinators, explain they can be reached at the Department of Computational Studies faculty cabins, or via student coordinators Dhruv Soin (9560855503) and Emy Elizabeth Oommen (9497052528).`;
   }
 
   /**
-   * Stream response from Groq LLM API with fallback to alternative model or local fallback
+   * Stream response from Groq LLM API with fallback to Vercel /api/chat proxy or local fallback
    */
   async streamQuery(messages, onToken, onComplete, onError) {
     const activeKey = this.getApiKey();
-    if (!activeKey || !activeKey.startsWith("gsk_")) {
-      return false; // Signals to use local fallback
-    }
 
-    const candidateModels = [
-      this.model,
-      ...(CONFIG.GROQ_MODELS_FALLBACK || ["qwen/qwen3.8-27b", "openai/gpt-oss-120b", "openai/gpt-oss-20b"])
-    ];
+    // 1. Direct Groq Cloud API if client API key is configured
+    if (activeKey && activeKey.startsWith("gsk_")) {
+      const candidateModels = [
+        this.model,
+        ...(CONFIG.GROQ_MODELS_FALLBACK || ["qwen/qwen3.8-27b", "qwen/qwen3.6-27b", "openai/gpt-oss-120b", "openai/gpt-oss-20b", "groq/compound-mini"])
+      ];
+      const uniqueModels = [...new Set(candidateModels.filter(Boolean))];
 
-    for (const modelToTry of candidateModels) {
-      try {
-        const response = await fetch(CONFIG.GROQ_ENDPOINT, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${activeKey}`
-          },
-          body: JSON.stringify({
-            model: modelToTry,
-            messages: [
-              { role: "system", content: this.systemPrompt },
-              ...messages
-            ],
-            temperature: 0.6,
-            max_tokens: 600,
-            stream: true
-          })
-        });
+      for (const modelToTry of uniqueModels) {
+        try {
+          const response = await fetch(CONFIG.GROQ_ENDPOINT, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${activeKey}`
+            },
+            body: JSON.stringify({
+              model: modelToTry,
+              messages: [
+                { role: "system", content: this.systemPrompt },
+                ...messages
+              ],
+              temperature: 0.6,
+              max_tokens: 180,
+              stream: true
+            })
+          });
 
-        if (!response.ok) {
-          const errText = await response.text();
-          console.warn(`Groq API (${modelToTry}) error:`, response.status, errText);
-          continue; // Try next model in candidate list
-        }
+          if (!response.ok) {
+            const errText = await response.text();
+            console.warn(`Groq API (${modelToTry}) error:`, response.status, errText);
+            continue;
+          }
 
-        const reader = response.body.getReader();
-        const decoder = new TextDecoder("utf-8");
-        let fullText = "";
-        let buffer = "";
+          const reader = response.body.getReader();
+          const decoder = new TextDecoder("utf-8");
+          let fullText = "";
+          let buffer = "";
 
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) break;
+          while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
 
-          buffer += decoder.decode(value, { stream: true });
-          const lines = buffer.split("\n");
-          buffer = lines.pop() || "";
+            buffer += decoder.decode(value, { stream: true });
+            const lines = buffer.split("\n");
+            buffer = lines.pop() || "";
 
-          for (const line of lines) {
-            const trimmed = line.trim();
-            if (!trimmed || trimmed.startsWith(":")) continue;
-            if (trimmed === "data: [DONE]") continue;
+            for (const line of lines) {
+              const trimmed = line.trim();
+              if (!trimmed || trimmed.startsWith(":")) continue;
+              if (trimmed === "data: [DONE]") continue;
 
-            if (trimmed.startsWith("data: ")) {
-              try {
-                const json = JSON.parse(trimmed.slice(6));
-                const token = json.choices?.[0]?.delta?.content || "";
-                if (token) {
-                  fullText += token;
-                  if (onToken) onToken(token, fullText);
-                }
-              } catch (e) {
-                // ignore chunk boundary parse errors
+              if (trimmed.startsWith("data: ")) {
+                try {
+                  const json = JSON.parse(trimmed.slice(6));
+                  const token = json.choices?.[0]?.delta?.content || "";
+                  if (token) {
+                    fullText += token;
+                    if (onToken) onToken(token, fullText);
+                  }
+                } catch (e) {}
               }
             }
           }
-        }
 
-        if (fullText.trim()) {
-          if (onComplete) onComplete(fullText);
-          return true;
+          if (fullText.trim()) {
+            if (onComplete) onComplete(fullText);
+            return true;
+          }
+        } catch (err) {
+          console.warn(`Groq Streaming (${modelToTry}) exception:`, err);
         }
-      } catch (err) {
-        console.warn(`Groq Streaming (${modelToTry}) exception:`, err);
       }
     }
 
-    if (onError) onError(new Error("All Groq models failed"));
+    // 2. Try Vercel Serverless /api/chat proxy (uses process.env.GROQ_API_KEY)
+    try {
+      const proxyRes = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          messages: [
+            { role: "system", content: this.systemPrompt },
+            ...messages
+          ],
+          model: this.model
+        })
+      });
+
+      if (proxyRes.ok) {
+        const data = await proxyRes.json();
+        if (data && !data.fallback && data.choices?.[0]?.message?.content) {
+          const content = data.choices[0].message.content;
+          // Simulate rapid streaming of response
+          const words = content.split(" ");
+          let cur = "";
+          for (let i = 0; i < words.length; i++) {
+            cur += (i === 0 ? "" : " ") + words[i];
+            if (onToken) onToken(words[i], cur);
+            await new Promise(r => setTimeout(r, 15));
+          }
+          if (onComplete) onComplete(content);
+          return true;
+        }
+      }
+    } catch (e) {
+      // /api/chat not available on standalone static server; seamlessly fall back
+    }
+
+    if (onError) onError(new Error("Cloud LLM unavailable, using neural fallback"));
     return false;
   }
 
@@ -179,31 +218,42 @@ ${scheduleSummary}
    */
   async transcribeAudio(audioBlob) {
     const activeKey = this.getApiKey();
-    if (!activeKey || !activeKey.startsWith("gsk_")) {
-      throw new Error("No Groq API key configured");
+
+    if (activeKey && activeKey.startsWith("gsk_")) {
+      const formData = new FormData();
+      formData.append("file", audioBlob, "audio.webm");
+      formData.append("model", "whisper-large-v3-turbo");
+      formData.append("language", "en");
+
+      const response = await fetch("https://api.groq.com/openai/v1/audio/transcriptions", {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${activeKey}`
+        },
+        body: formData
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        return (result.text || "").trim();
+      }
     }
 
-    const formData = new FormData();
-    formData.append("file", audioBlob, "audio.webm");
-    formData.append("model", "whisper-large-v3-turbo");
-    formData.append("language", "en");
+    // Try Vercel Serverless /api/transcribe proxy
+    try {
+      const proxyRes = await fetch("/api/transcribe", {
+        method: "POST",
+        headers: { "Content-Type": "audio/webm" },
+        body: audioBlob
+      });
 
-    const response = await fetch("https://api.groq.com/openai/v1/audio/transcriptions", {
-      method: "POST",
-      headers: {
-        "Authorization": `Bearer ${activeKey}`
-      },
-      body: formData
-    });
+      if (proxyRes.ok) {
+        const result = await proxyRes.json();
+        return (result.text || "").trim();
+      }
+    } catch (e) {}
 
-    if (!response.ok) {
-      const errText = await response.text();
-      console.warn("Groq Whisper error:", response.status, errText);
-      throw new Error(`Whisper transcription failed (${response.status})`);
-    }
-
-    const result = await response.json();
-    return (result.text || "").trim();
+    throw new Error("Speech transcription service unavailable");
   }
 }
 

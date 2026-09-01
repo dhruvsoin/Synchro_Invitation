@@ -17,6 +17,17 @@ export const FEST_INFO = {
   dates: "7 – 11 September 2026",
   startDate: "2026-09-07T09:00:00+05:30",
   endDate: "2026-09-11T17:00:00+05:30",
+  chancellor: { name: "Rev. Fr. Santhosh Mathenkunnel, CMI", role: "Chancellor" },
+  viceChancellor: { name: "Rev. Fr. Dr. Augustine George, CMI", role: "Vice Chancellor & Patron" },
+  proViceChancellor: { name: "Rev. Fr. Dr. Lijo P. Thomas, CMI", role: "Pro Vice Chancellor" },
+  registrar: { name: "Dr. Aloysius Edward J.", role: "Registrar" },
+  dean: { name: "Dr. Sevuga Pandian A", role: "Dean, School of Computational and Physical Sciences" },
+  hod: { name: "Dr. K. Kalaiselvi", role: "Head of the Department (HOD)" },
+  programCoordinator: { name: "Dr. Stephen A", role: "Program Coordinator" },
+  facultyCoordinators: [
+    { name: "Dr. Shiva Prasad", role: "Faculty Coordinator" },
+    { name: "Prof. Ritika Shrimali", role: "Faculty Coordinator" }
+  ],
   overallCoordinators: [
     { name: "Dhruv Soin", id: "24DTSA22", phone: "9560855503", role: "Student Coordinator" },
     { name: "Emy Elizabeth Oommen", id: "24BCYA47", phone: "9497052528", role: "Student Coordinator" }
