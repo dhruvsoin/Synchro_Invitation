@@ -416,6 +416,13 @@ export class AIAssistant {
   speak(text) {
     if (!this.synth || !this.isVoiceEnabled) return;
     this.stopSpeech();
+
+    try {
+      if (this.synth.paused) {
+        this.synth.resume();
+      }
+    } catch (e) {}
+
     const currentSessionId = ++this.speechSessionId;
 
     // Clean text of markdown, bullet symbols, asterisks, URLs, and raw punctuation for natural human speech
@@ -457,6 +464,12 @@ export class AIAssistant {
       const utterance = new SpeechSynthesisUtterance(sentence);
       if (this.selectedVoice) {
         utterance.voice = this.selectedVoice;
+      } else {
+        const voices = this.synth.getVoices();
+        if (voices && voices.length > 0) {
+          this.selectedVoice = voices.find(v => v.lang.startsWith("en")) || voices[0];
+          utterance.voice = this.selectedVoice;
+        }
       }
       utterance.rate = this.voiceRate;
       utterance.pitch = this.voicePitch;
@@ -482,6 +495,9 @@ export class AIAssistant {
         speakNextSentence();
       };
 
+      try {
+        if (this.synth.paused) this.synth.resume();
+      } catch (e) {}
       this.synth.speak(utterance);
     };
 

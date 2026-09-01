@@ -108,6 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const taglineEl = document.getElementById("panel-domain-tagline");
     const loreEl = document.getElementById("panel-domain-lore");
     const leadEl = document.getElementById("panel-lead-name");
+    const leadIdEl = document.getElementById("panel-lead-id");
     const phoneEl = document.getElementById("panel-lead-phone");
     const callBtn = document.getElementById("panel-btn-call");
     const eventsList = document.getElementById("panel-events-list");
@@ -125,7 +126,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (taglineEl) taglineEl.textContent = domain.tagline;
     if (loreEl) loreEl.textContent = domain.lore;
 
-    if (leadEl) leadEl.textContent = `${domain.head.name} (${domain.head.id})`;
+    if (leadEl) leadEl.textContent = domain.head.name;
+    if (leadIdEl) leadIdEl.textContent = domain.head.id;
     if (phoneEl) phoneEl.textContent = `+91 ${domain.head.phone}`;
     if (callBtn) callBtn.href = `tel:+91${domain.head.phone}`;
 
