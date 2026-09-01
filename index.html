@@ -1,680 +1,348 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SynchroTech 2026 — Decode the Spectrum | Inaugural Invitation</title>
-    <meta name="description" content="Official Inaugural Invitation to Fr. Dr. Augustine George CMI, Vice Chancellor, Kristu Jayanti University, to inaugurate SynchroTech 2026 — Decode the Spectrum.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>SYNCHROTECH 2026 — Decode The Spectrum</title>
+  <meta name="description" content="Kristu Jayanti University • Department of Computational Studies • Synchrotech 2026 Official Invitation">
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Luxury Academic, Modular & Cyber Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Chakra+Petch:ital,wght@0,600;0,700;0,800;1,700&family=Orbitron:wght@700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=2026_07">
 </head>
-<body>
+<body class="cinematic-body">
 
-    <!-- ================================================================
-         INITIAL INTRO: CRYSTAL CRACK & SHATTER PORTAL
-         ================================================================ -->
-    <div id="intro-shatter-curtain">
-        <div class="shatter-center-wrapper">
-            <div class="shatter-crystal-box" id="shatter-crystal-btn">
-                <div class="shatter-crystal-core"></div>
-                <div class="shatter-crystal-facets"></div>
-                <svg class="shatter-fractures-svg" viewBox="0 0 200 200">
-                    <path class="crack crack-1" d="M100,30 L105,75 L95,110 L115,160" />
-                    <path class="crack crack-2" d="M105,75 L145,85 L165,120" />
-                    <path class="crack crack-3" d="M95,110 L60,125 L35,145" />
-                    <path class="crack crack-4" d="M100,100 L130,135 L145,170" />
-                    <path class="crack crack-5" d="M100,60 L70,80 L50,65" />
-                </svg>
-                <div class="shatter-energy-burst" id="shatter-energy-burst"></div>
-            </div>
-            <p class="shatter-prompt">Tap the crystal to begin</p>
-        </div>
+  <!-- Fullscreen Interactive Canvas (Crystal Prism, Laser Strike, 7 Spectral Rays) -->
+  <canvas id="stage-canvas"></canvas>
+
+  <!-- Master Floating Header -->
+  <header class="app-header">
+    <!-- Top-Left Official University Banner Logo -->
+    <div class="brand-left">
+      <img src="assets/logo.png" alt="Kristu Jayanti (Deemed to be University)" class="official-univ-banner" />
     </div>
 
-    <!-- Film grain SVG overlay -->
-    <svg id="noise-svg" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <filter id="noise-f">
-            <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="4" stitchTiles="stitch"/>
-            <feColorMatrix type="saturate" values="0"/>
-        </filter>
-        <rect width="100%" height="100%" filter="url(#noise-f)"/>
-    </svg>
+    <!-- Top-Right Actions -->
+    <div class="header-right-actions">
+      <button id="btn-header-invite" class="header-pill-btn" title="Press Spacebar or Click to Reveal Invitation">
+        <i class="fa-solid fa-envelope-open-text"></i>
+        <span>INVITATION</span>
+        <kbd>SPACE</kbd>
+      </button>
+    </div>
+  </header>
 
-    <!-- Custom Cursor -->
-    <div id="cursor-dot"></div>
-    <div id="cursor-ring"></div>
+  <!-- Top-Center Dead-Center Academic Header -->
+  <div class="top-center-academic" id="top-center-academic">
+    <span class="top-school-name">SCHOOL OF COMPUTATIONAL AND PHYSICAL SCIENCES</span>
+    <span class="top-dept-name">DEPARTMENT OF COMPUTATIONAL STUDIES</span>
+  </div>
 
-    <!-- ================================================================
-         SCENE 0: PRISM HERO (Three.js 3D Refraction + Official Spectrum Logo)
-         ================================================================ -->
-    <section class="scene" id="s-intro">
-        <canvas id="prism-canvas"></canvas>
+  <!-- Bottom-Center Dead-Center SYNCHROTECH 2026 Title & Motto -->
+  <div class="bottom-center-fest" id="bottom-center-fest">
+    <h1 class="fest-title-marquee" id="fest-title-marquee">
+      <span class="m-char c-1">S</span>
+      <span class="m-char c-2">Y</span>
+      <span class="m-char c-3">N</span>
+      <span class="m-char c-4">C</span>
+      <span class="m-char c-5">H</span>
+      <span class="m-char c-6">R</span>
+      <span class="m-char c-7">O</span>
+      <span class="m-char c-8">T</span>
+      <span class="m-char c-9">E</span>
+      <span class="m-char c-10">C</span>
+      <span class="m-char c-11">H</span>
+      <span class="fest-year-badge">2026</span>
+    </h1>
+    <div class="fest-motto-badge">
+      <span class="fest-motto-dot"></span>
+      <span class="fest-motto-text">DECODE THE SPECTRUM</span>
+      <span class="fest-motto-dot"></span>
+    </div>
+  </div>
 
-        <div class="intro-overlay">
-            <div class="hero-logo-frame">
-                <!-- Top Circuit Lines & Badge -->
-                <div class="hl-top-circuit">
-                    <span class="hl-circuit-line left"></span>
-                    <span class="hl-node"></span>
-                    <span class="hl-badge">INTRA UNIVERSITY FEST · DEPT. OF COMPUTATIONAL STUDIES</span>
-                    <span class="hl-node"></span>
-                    <span class="hl-circuit-line right"></span>
-                </div>
+  <!-- Domain Details Slide-In Panel (Right Side Drawer) -->
+  <aside class="domain-side-panel" id="domain-side-panel">
+    <button class="panel-close-btn" id="btn-close-domain-panel" aria-label="Close Domain Panel">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
 
-                <!-- Main Spectrum SYNCHROTECH Heading -->
-                <div class="hl-title-wrap">
-                    <span class="hl-side-line left"></span>
-                    <h1 class="hl-title">SYNCHROTECH</h1>
-                    <span class="hl-side-line right"></span>
-                </div>
+    <div class="panel-scroll-content">
+      <div class="panel-header-badge">
+        <span class="color-dot" id="panel-color-dot"></span>
+        <span class="domain-badge-name" id="panel-domain-badge">AI/ML</span>
+        <span class="ray-order-tag" id="panel-ray-tag">RED RAY // ORDER 1</span>
+      </div>
 
-                <!-- DECODE THE SPECTRUM Tagline -->
-                <div class="hl-tagline-wrap">
-                    <span class="hl-tagline">DECODE THE SPECTRUM</span>
-                </div>
-            </div>
+      <h2 class="panel-domain-title" id="panel-domain-title">Artificial Intelligence & Machine Learning</h2>
+      <p class="panel-domain-tagline" id="panel-domain-tagline">Neural Frontiers & Autonomous Intelligence</p>
+      
+      <p class="panel-domain-lore" id="panel-domain-lore">
+        Venture into dynamic neural architectures, generative models, and algorithmic problem-solving.
+      </p>
+
+      <!-- Domain Coordinator Row -->
+      <div class="panel-lead-box">
+        <div class="lead-info">
+          <span class="lead-label">DOMAIN LEAD</span>
+          <h4 class="lead-name" id="panel-lead-name">Justin Johnson</h4>
+          <span class="lead-id" id="panel-lead-id">24AIML27</span>
+        </div>
+        <a href="#" class="lead-call-btn" id="panel-lead-phone">
+          <i class="fa-solid fa-phone"></i>
+          <span>Contact</span>
+        </a>
+      </div>
+
+      <!-- Events in Domain -->
+      <div class="panel-events-section">
+        <div class="section-title-row">
+          <i class="fa-solid fa-trophy"></i>
+          <span>COMPETITIVE EVENTS</span>
+        </div>
+        <div class="panel-events-list" id="panel-events-container">
+          <!-- Dynamic Event Cards -->
+        </div>
+      </div>
+
+      <!-- AI Query Quick Action -->
+      <div class="panel-ai-action">
+        <button id="btn-ask-ai-domain" class="panel-ai-btn">
+          <i class="fa-solid fa-sparkles"></i>
+          <span>Ask SYNCHRO-AI about this domain</span>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- SYNCHRO-AI Floating Orb & Glassmorphic Chat Panel -->
+  <div class="synchro-ai-container" id="synchro-ai-container">
+    
+    <!-- Expanded Chat Panel -->
+    <div class="ai-chat-drawer" id="ai-chat-drawer">
+      <div class="ai-chat-header">
+        <div class="ai-title-wrap">
+          <div class="ai-status-indicator"></div>
+          <div>
+            <h4 class="ai-title">SYNCHRO-AI</h4>
+            <span class="ai-subtitle" id="ai-engine-status">Neural Concierge • Groq Active</span>
+          </div>
+        </div>
+        <div class="ai-header-controls">
+          <button id="btn-ai-voice-select-toggle" class="ai-ctrl-btn" title="Voice Model & Pitch Settings">
+            <i class="fa-solid fa-sliders"></i>
+          </button>
+          <button id="btn-ai-voice-toggle" class="ai-ctrl-btn active" title="Toggle Voice Narration">
+            <i class="fa-solid fa-volume-high"></i>
+          </button>
+          <button id="btn-ai-config-toggle" class="ai-ctrl-btn" title="Groq API Key Config">
+            <i class="fa-solid fa-gear"></i>
+          </button>
+          <button id="btn-close-chat" class="ai-ctrl-btn" title="Collapse Chat">
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Voice Selector & Speech Pitch Popover -->
+      <div class="ai-voice-popover" id="ai-voice-popover">
+        <div class="popover-title-row">
+          <span class="popover-title"><i class="fa-solid fa-microphone-lines"></i> Neural Voice Engine</span>
+        </div>
+        <p class="popover-desc">Choose your preferred assistant voice profile & playback speed.</p>
+        
+        <div class="popover-field">
+          <label for="select-ai-voice" class="popover-label">ASSISTANT VOICE:</label>
+          <select id="select-ai-voice" class="popover-select">
+            <option value="">Loading system voices...</option>
+          </select>
         </div>
 
-        <div class="scroll-cue">
-            <div class="cue-pill">
-                <span>SCROLL TO EXPLORE</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- ================================================================
-         SCENE 1: FORMAL INVITATION (Vice Chancellor Invitation Letter)
-         ================================================================ -->
-    <section class="scene" id="s-invite">
-        <div class="container">
-            <article class="invite-card">
-                <div class="card-spectrum-border"></div>
-
-                <header class="invite-header">
-                    <div class="inst-univ">KRISTU JAYANTI UNIVERSITY</div>
-                    <h3 class="inst-school">School of Computational and Physical Sciences</h3>
-                    <h2 class="inst-dept">Department of Computational Studies</h2>
-                    <div class="gold-divider"></div>
-                </header>
-
-                <div class="invite-body">
-                    <p class="inv-lead">cordially and respectfully invites</p>
-                    <h3 class="inv-name">Fr. Dr. Augustine George CMI</h3>
-                    <p class="inv-role">Vice Chancellor, Kristu Jayanti University</p>
-
-                    <div class="inv-text-block">
-                        <p>to formally inaugurate our flagship intra-university technology fest,</p>
-                        <div class="inv-fest-lockup">
-                            <h4 class="inv-fest-title">SYNCHROTECH 2026</h4>
-                            <span class="inv-fest-tagline">DECODE THE SPECTRUM</span>
-                        </div>
-                        <p class="inv-desc">
-                            Organized entirely by our third-year students for the first and second years, SynchroTech unites 
-                            <strong>8 specialized domains</strong>, <strong>12 competitive events</strong>, and <strong>26 scheduled sessions</strong> 
-                            spanning Artificial Intelligence, Cybersecurity, Cloud Infrastructure, Data Analytics, Game Design, 
-                            Quantum Logic, Blockchain Architecture, and Executive Leadership.
-                        </p>
-                    </div>
-
-                    <div class="ceremony-banner">
-                        <div class="cb-item">
-                            <span class="cb-label">Inauguration &amp; Finale</span>
-                            <span class="cb-val">9:00 AM · Friday, 11th September 2026</span>
-                        </div>
-                        <div class="cb-divider"></div>
-                        <div class="cb-item">
-                            <span class="cb-label">Venue</span>
-                            <span class="cb-val">M1 Auditorium</span>
-                        </div>
-                    </div>
-                </div>
-
-                <footer class="invite-footer">
-                    <div class="sig-row">
-                        <div class="sig-col">
-                            <p class="sig-intro">With highest regards,</p>
-                            <p class="sig-names">Dhruv Soin &amp; Emy Elizabeth Oommen</p>
-                            <p class="sig-details">Student Coordinators · SynchroTech 2026</p>
-                        </div>
-                        <div class="sig-col sig-right">
-                            <p class="sig-dept">Department of Computational Studies</p>
-                            <p class="sig-inst">Kristu Jayanti University, Bengaluru</p>
-                        </div>
-                    </div>
-                </footer>
-            </article>
-        </div>
-    </section>
-
-    <!-- ================================================================
-         SCENE 2: 3D HOLOGRAPHIC DOMAIN COVERFLOW & AMBIENT SPECTRUM
-         ================================================================ -->
-    <section class="scene" id="s-domains">
-        <!-- Dynamic Ambient Background Aura -->
-        <div class="domain-ambient-aura" id="domain-ambient-aura"></div>
-
-        <div class="domains-scroll-header">
-            <span class="sec-tag">THE SPECTRUM OF INNOVATION</span>
-            <h2 class="sec-title">7 TECHNICAL DOMAINS + SPECTRUM FINALE</h2>
-            <div class="domain-counter-wrap">
-                <span class="domain-counter-pill" id="domain-counter-pill"><span id="dc-current">01</span> / 08</span>
-            </div>
-            <p class="sec-sub">Traverse the specialized domains, competitive rounds, and domain leadership</p>
+        <div class="popover-field-row">
+          <div class="popover-subfield">
+            <label for="range-voice-rate" class="popover-label">SPEED (<span id="label-voice-rate">1.05x</span>):</label>
+            <input type="range" id="range-voice-rate" min="0.75" max="1.5" step="0.05" value="1.05" class="popover-range" />
+          </div>
+          <div class="popover-subfield">
+            <label for="range-voice-pitch" class="popover-label">PITCH (<span id="label-voice-pitch">1.0x</span>):</label>
+            <input type="range" id="range-voice-pitch" min="0.7" max="1.3" step="0.05" value="1.0" class="popover-range" />
+          </div>
         </div>
 
-        <div class="coverflow-container" id="coverflow-container">
-            <!-- Nav Arrows -->
-            <button class="cf-arrow cf-prev" id="cf-prev" aria-label="Previous Domain">❮</button>
-            <button class="cf-arrow cf-next" id="cf-next" aria-label="Next Domain">❯</button>
-
-            <!-- 3D Stage -->
-            <div class="coverflow-stage" id="coverflow-stage">
-
-                <!-- 1. AI & Machine Learning -->
-                <div class="coverflow-card" data-idx="0" style="--d-color: #FF3131; --d-rgb: 255, 49, 49;">
-                    <div class="dsc-top">
-                        <div class="dsc-left">
-                            <span class="dsc-domain-tag">Domain 01 · AIML</span>
-                            <h3 class="dsc-domain-title">AI &amp; MACHINE LEARNING</h3>
-                            <p class="dsc-domain-tagline">Intelligence, amplified through neural horizons</p>
-                        </div>
-                        <div class="dsc-head-box">
-                            <span class="head-label">Domain Head</span>
-                            <div class="head-name">Justin Johnson</div>
-                            <div class="head-contact">24AIML27 · 📞 7696811958</div>
-                        </div>
-                    </div>
-                    <div class="dsc-events-grid">
-                        <div class="dsc-event-item">
-                            <div class="ev-header">
-                                <h5 class="ev-name">Zero Verdict</h5>
-                                <span class="ev-badge">Solo Event</span>
-                            </div>
-                            <p class="ev-concept">AI prompt investigation, deduction, and live auction challenge.</p>
-                            <div class="ev-rounds">
-                                <div class="ev-round-item"><span class="r-num">R1</span><span class="r-desc"><strong>The Forbidden Frame:</strong> Generate reference image without forbidden words.</span></div>
-                                <div class="ev-round-item"><span class="r-num">R2</span><span class="r-desc"><strong>AI Case Files:</strong> Analyze AI clues &amp; deductive witness statements.</span></div>
-                                <div class="ev-round-item"><span class="r-num">R3</span><span class="r-desc"><strong>Bid Wars:</strong> 100 AI coins auction for strategic advantages.</span></div>
-                            </div>
-                        </div>
-                        <div class="dsc-event-item">
-                            <div class="ev-header">
-                                <h5 class="ev-name">Overdrive</h5>
-                                <span class="ev-badge">Duo Event</span>
-                            </div>
-                            <p class="ev-concept">High-speed vocabulary and AI prompt engineering clash.</p>
-                            <div class="ev-rounds">
-                                <div class="ev-round-item"><span class="r-num">R1</span><span class="r-desc"><strong>Prompt Puzzle:</strong> Crack AI crossword to forge effective prompt.</span></div>
-                                <div class="ev-round-item"><span class="r-num">R2</span><span class="r-desc"><strong>Mind Clash:</strong> Head-to-head prompt face-off against rival team.</span></div>
-                                <div class="ev-round-item"><span class="r-num">R3</span><span class="r-desc"><strong>AI Roulette:</strong> Randomized challenges with penalty wheel.</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 2. Cybersecurity -->
-                <div class="coverflow-card" data-idx="1" style="--d-color: #8BC54B; --d-rgb: 139, 197, 75;">
-                    <div class="dsc-top">
-                        <div class="dsc-left">
-                            <span class="dsc-domain-tag">Domain 02 · Cyber Security</span>
-                            <h3 class="dsc-domain-title">CYBERSECURITY</h3>
-                            <p class="dsc-domain-tagline">Guard the digital perimeter against unseen threats</p>
-                        </div>
-                        <div class="dsc-head-box">
-                            <span class="head-label">Domain Head</span>
-                            <div class="head-name">Adith Joel</div>
-                            <div class="head-contact">24BCYA13 · 📞 8884002302</div>
-                        </div>
-                    </div>
-                    <div class="dsc-events-grid">
-                        <div class="dsc-event-item">
-                            <div class="ev-header">
-                                <h5 class="ev-name">CTF (Capture The Flag)</h5>
-                                <span class="ev-badge">Team Event</span>
-                            </div>
-                            <p class="ev-concept">Live hands-on vulnerability exploit &amp; hidden flag extraction.</p>
-                            <div class="ev-rounds">
-                                <div class="ev-round-item"><span class="r-num">R1</span><span class="r-desc"><strong>Mind Clash:</strong> Security fundamentals &amp; threat MCQs.</span></div>
-                                <div class="ev-round-item"><span class="r-num">R2</span><span class="r-desc"><strong>CTF Challenge:</strong> Live system exploitation &amp; flag extraction.</span></div>
-                            </div>
-                        </div>
-                        <div class="dsc-event-item">
-                            <div class="ev-header">
-                                <h5 class="ev-name">ThreatX</h5>
-                                <span class="ev-badge">Team Event</span>
-                            </div>
-                            <p class="ev-concept">Incident response, attack defense pairing, and cyber court.</p>
-                            <div class="ev-rounds">
-                                <div class="ev-round-item"><span class="r-num">R1</span><span class="r-desc"><strong>Cyber Quiz:</strong> Security concepts and protocol screening.</span></div>
-                                <div class="ev-round-item"><span class="r-num">R2</span><span class="r-desc"><strong>Security Sense:</strong> Match countermeasures to live cyber attacks.</span></div>
-                                <div class="ev-round-item"><span class="r-num">R3</span><span class="r-desc"><strong>Cyber Court:</strong> Defend high-stakes breach mitigation strategy.</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 3. Cloud Computing -->
-                <div class="coverflow-card" data-idx="2" style="--d-color: #38B6FF; --d-rgb: 56, 182, 255;">
-                    <div class="dsc-top">
-                        <div class="dsc-left">
-                            <span class="dsc-domain-tag">Domain 03 · Cloud</span>
-                            <h3 class="dsc-domain-title">CLOUD COMPUTING</h3>
-                            <p class="dsc-domain-tagline">Infinite scale, resilient global architecture</p>
-                        </div>
-                        <div class="dsc-head-box">
-                            <span class="head-label">Domain Head</span>
-                            <div class="head-name">Divya Patel</div>
-                            <div class="head-contact">24BCLA16 · 📞 9620877001</div>
-                        </div>
-                    </div>
-                    <div class="dsc-events-grid">
-                        <div class="dsc-event-item">
-                            <div class="ev-header">
-                                <h5 class="ev-name">Architecture Pitch</h5>
-                                <span class="ev-badge">Team Event</span>
-                            </div>
-                            <p class="ev-concept">Design, adapt, and pitch resilient AWS cloud architectures.</p>
-                            <div class="ev-rounds">
-                                <div class="ev-round-item"><span class="r-num">R1</span><span class="r-desc"><strong>Cloud Aptitude:</strong> AWS core services &amp; compute principles.</span></div>
-                                <div class="ev-round-item"><span class="r-num">R2</span><span class="r-desc"><strong>Architect's Gambit:</strong> Adapt to surprise budget and scale constraints.</span></div>
-                                <div class="ev-round-item"><span class="r-num">R3</span><span class="r-desc"><strong>Build the Cloud:</strong> Full architecture defense before judges.</span></div>
-                            </div>
-                        </div>
-                        <div class="dsc-event-item">
-                            <div class="ev-header">
-                                <h5 class="ev-name">Cloud Cipher</h5>
-                                <span class="ev-badge">Team Event</span>
-                            </div>
-                            <p class="ev-concept">High-energy AWS charades and VPC scenario solving.</p>
-                            <div class="ev-rounds">
-                                <div class="ev-round-item"><span class="r-num">R1</span><span class="r-desc"><strong>Cloud Quiz:</strong> Infrastructure, serverless, and pricing logic.</span></div>
-                                <div class="ev-round-item"><span class="r-num">R2</span><span class="r-desc"><strong>Cloud Charades:</strong> Act &amp; guess cloud services under time pressure.</span></div>
-                                <div class="ev-round-item"><span class="r-num">R3</span><span class="r-desc"><strong>Cloud Mastery:</strong> Design serverless fault-tolerant VPC systems.</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 4. Data Science -->
-                <div class="coverflow-card" data-idx="3" style="--d-color: #7D83D7; --d-rgb: 125, 131, 215;">
-                    <div class="dsc-top">
-                        <div class="dsc-left">
-                            <span class="dsc-domain-tag">Domain 04 · Data Science</span>
-                            <h3 class="dsc-domain-title">DATA SCIENCE</h3>
-                            <p class="dsc-domain-tagline">Where numbers reveal patterns and shape decisions</p>
-                        </div>
-                        <div class="dsc-head-box">
-                            <span class="head-label">Domain Head</span>
-                            <div class="head-name">Subham Malla</div>
-                            <div class="head-contact">24DTSA27 · 📞 8837275099</div>
-                        </div>
-                    </div>
-                    <div class="dsc-events-grid">
-                        <div class="dsc-event-item">
-                            <div class="ev-header">
-                                <h5 class="ev-name">DataForge</h5>
-                                <span class="ev-badge">Team Event</span>
-                            </div>
-                            <p class="ev-concept">End-to-end analytics, Power BI dashboards, and executive pitching.</p>
-                            <div class="ev-rounds">
-                                <div class="ev-round-item"><span class="r-num">R1</span><span class="r-desc"><strong>General Aptitude:</strong> Timed logic, statistics, and analytics.</span></div>
-                                <div class="ev-round-item"><span class="r-num">R2</span><span class="r-desc"><strong>Dashboard Building:</strong> Build interactive Power BI insights.</span></div>
-                                <div class="ev-round-item"><span class="r-num">R3</span><span class="r-desc"><strong>Executive Pitch:</strong> Defend data-driven insights to panel.</span></div>
-                            </div>
-                        </div>
-                        <div class="dsc-event-item">
-                            <div class="ev-header">
-                                <h5 class="ev-name">The Query Detective</h5>
-                                <span class="ev-badge">Team Event</span>
-                            </div>
-                            <p class="ev-concept">Crack fictional crime forensic mysteries through live SQL queries.</p>
-                            <div class="ev-rounds">
-                                <div class="ev-round-item"><span class="r-num">R1</span><span class="r-desc"><strong>SQL Aptitude:</strong> Database logic &amp; syntax qualification.</span></div>
-                                <div class="ev-round-item"><span class="r-num">R2</span><span class="r-desc"><strong>SQL Mystery:</strong> Query database live to expose the culprit.</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 5. Animation & Game Design -->
-                <div class="coverflow-card" data-idx="4" style="--d-color: #F7BD2B; --d-rgb: 247, 189, 43;">
-                    <div class="dsc-top">
-                        <div class="dsc-left">
-                            <span class="dsc-domain-tag">Domain 05 · Animation &amp; Game Design</span>
-                            <h3 class="dsc-domain-title">ANIMATION &amp; GAME DESIGN</h3>
-                            <p class="dsc-domain-tagline">Worlds built from imagination and interactive play</p>
-                        </div>
-                        <div class="dsc-head-box">
-                            <span class="head-label">Domain Head</span>
-                            <div class="head-name">Shravya Hegde</div>
-                            <div class="head-contact">24BCYB06 · 📞 9663366888</div>
-                        </div>
-                    </div>
-                    <div class="dsc-events-grid">
-                        <div class="dsc-event-item">
-                            <div class="ev-header">
-                                <h5 class="ev-name">Character Jam</h5>
-                                <span class="ev-badge">Team Event</span>
-                            </div>
-                            <p class="ev-concept">Character creation, backstory pitch, and interactive Scratch logic.</p>
-                            <div class="ev-rounds">
-                                <div class="ev-round-item"><span class="r-num">R1</span><span class="r-desc"><strong>Sketch &amp; Pitch:</strong> Sketch character from sealed prompt and pitch lore.</span></div>
-                                <div class="ev-round-item"><span class="r-num">R2</span><span class="r-desc"><strong>Bring It To Life:</strong> Program animations and game movement in Scratch.</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 6. Quantum Computing -->
-                <div class="coverflow-card" data-idx="5" style="--d-color: #FF5757; --d-rgb: 255, 87, 87;">
-                    <div class="dsc-top">
-                        <div class="dsc-left">
-                            <span class="dsc-domain-tag">Domain 06 · Quantum</span>
-                            <h3 class="dsc-domain-title">QUANTUM COMPUTING</h3>
-                            <p class="dsc-domain-tagline">Superposition, entanglement, and logic beyond classical bounds</p>
-                        </div>
-                        <div class="dsc-head-box">
-                            <span class="head-label">Domain Head</span>
-                            <div class="head-name">Aadhithya Rajesh</div>
-                            <div class="head-contact">24DTSA02 · 📞 9995882264</div>
-                        </div>
-                    </div>
-                    <div class="dsc-events-grid">
-                        <div class="dsc-event-item">
-                            <div class="ev-header">
-                                <h5 class="ev-name">Qubit Quest</h5>
-                                <span class="ev-badge">Team Event</span>
-                            </div>
-                            <p class="ev-concept">Quantum analogies, no-words charades, and cipher campus hunt.</p>
-                            <div class="ev-rounds">
-                                <div class="ev-round-item"><span class="r-num">R1</span><span class="r-desc"><strong>Pair-adox:</strong> Match quantum concepts to real-world analogies.</span></div>
-                                <div class="ev-round-item"><span class="r-num">R2</span><span class="r-desc"><strong>Quantum Charades:</strong> Act quantum terms without forbidden words.</span></div>
-                                <div class="ev-round-item"><span class="r-num">R3</span><span class="r-desc"><strong>Cipher Hunt:</strong> Decode sequential cryptographic clues.</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 7. Blockchain -->
-                <div class="coverflow-card" data-idx="6" style="--d-color: #E77BC7; --d-rgb: 231, 123, 199;">
-                    <div class="dsc-top">
-                        <div class="dsc-left">
-                            <span class="dsc-domain-tag">Domain 07 · Blockchain</span>
-                            <h3 class="dsc-domain-title">BLOCKCHAIN</h3>
-                            <p class="dsc-domain-tagline">Trust engineered through immutable decentralized consensus</p>
-                        </div>
-                        <div class="dsc-head-box">
-                            <span class="head-label">Domain Head</span>
-                            <div class="head-name">Abhay Binoy</div>
-                            <div class="head-contact">24BCYA08 · 📞 7907523410</div>
-                        </div>
-                    </div>
-                    <div class="dsc-events-grid">
-                        <div class="dsc-event-item">
-                            <div class="ev-header">
-                                <h5 class="ev-name">GenesisChain Quest</h5>
-                                <span class="ev-badge">Team Event</span>
-                            </div>
-                            <p class="ev-concept">Web3 smart contract auditing, bug fixing, and physical QR block hunt.</p>
-                            <div class="ev-rounds">
-                                <div class="ev-round-item"><span class="r-num">R1</span><span class="r-desc"><strong>Genesis Block:</strong> Live Kahoot quiz on Web3 &amp; cryptography.</span></div>
-                                <div class="ev-round-item"><span class="r-num">R2</span><span class="r-desc"><strong>The Code Audit:</strong> Audit smart contracts &amp; fix exploits.</span></div>
-                                <div class="ev-round-item"><span class="r-num">R3</span><span class="r-desc"><strong>Proof of Hunt:</strong> Scavenger race assembling verified blocks.</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 8. Spectrum CEO (Non-Tech Finale) -->
-                <div class="coverflow-card" data-idx="7" style="--d-color: #D4AF37; --d-rgb: 212, 175, 55;">
-                    <div class="dsc-top">
-                        <div class="dsc-left">
-                            <span class="dsc-domain-tag">Grand Finale · IT Manager</span>
-                            <h3 class="dsc-domain-title">SPECTRUM CEO</h3>
-                            <p class="dsc-domain-tagline">Leadership, rapid wit, and executive composure under pressure</p>
-                        </div>
-                        <div class="dsc-head-box">
-                            <span class="head-label">Domain Head</span>
-                            <div class="head-name">Emlin Joshy</div>
-                            <div class="head-contact">24DTSA25 · 📞 7760297422</div>
-                        </div>
-                    </div>
-                    <div class="dsc-events-grid">
-                        <div class="dsc-event-item">
-                            <div class="ev-header">
-                                <h5 class="ev-name">Spectrum CEO (Flagship)</h5>
-                                <span class="ev-badge" style="background: rgba(212, 175, 55, 0.2); color: #F8E7A2; border-color: rgba(212, 175, 55, 0.4);">Solo Championship</span>
-                            </div>
-                            <p class="ev-concept">Flagship championship with 2 top nominees from every domain.</p>
-                            <div class="ev-rounds">
-                                <div class="ev-round-item"><span class="r-num">R1</span><span class="r-desc"><strong>The Refraction:</strong> Impromptu debate defending randomized stance.</span></div>
-                                <div class="ev-round-item"><span class="r-num">R2</span><span class="r-desc"><strong>White Lie:</strong> Pitch absurd product with straight executive face.</span></div>
-                                <div class="ev-round-item"><span class="r-num">R3</span><span class="r-desc"><strong>Under the Lens:</strong> High-pressure 1-on-1 stress interview.</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+        <div class="popover-actions">
+          <button id="btn-test-voice" class="popover-test-btn">
+            <i class="fa-solid fa-play"></i> Test Voice
+          </button>
         </div>
-    </section>
+      </div>
 
-    <!-- ================================================================
-         SCENE 3: STARS OF SYNCHROTECH & OVERALL CHAMPIONS
-         ================================================================ -->
-    <section class="scene" id="s-awards">
-        <div class="container">
-            <div class="section-head text-center">
-                <span class="sec-tag">HONOR &amp; ACCOLADES</span>
-                <h2 class="sec-title">PRESTIGE &amp; CHAMPIONSHIPS</h2>
-                <p class="sec-sub">Celebrating individual brilliance and collective domain supremacy</p>
-            </div>
-
-            <div class="awards-grid">
-                <!-- Card 1: Stars of Synchrotech -->
-                <div class="award-card award-stars">
-                    <div class="award-badge">INDIVIDUAL EXCELLENCE</div>
-                    <h3 class="award-title">Stars of Synchrotech</h3>
-                    <p class="award-desc">
-                        Bestowed upon the single highest-scoring participant in each domain who demonstrates 
-                        consistent mastery across all competitive rounds.
-                    </p>
-
-                    <div class="stars-domain-list">
-                        <div class="star-badge-item">
-                            <span class="sb-domain">AIML</span>
-                            <span class="sb-honor" style="color: #FF3131;">Crimson Mind</span>
-                        </div>
-                        <div class="star-badge-item">
-                            <span class="sb-domain">Cybersecurity</span>
-                            <span class="sb-honor" style="color: #8BC54B;">Emerald Sentinel</span>
-                        </div>
-                        <div class="star-badge-item">
-                            <span class="sb-domain">Cloud Computing</span>
-                            <span class="sb-honor" style="color: #38B6FF;">Blue Nimbus</span>
-                        </div>
-                        <div class="star-badge-item">
-                            <span class="sb-domain">Data Science</span>
-                            <span class="sb-honor" style="color: #7D83D7;">Indigo Insight</span>
-                        </div>
-                        <div class="star-badge-item">
-                            <span class="sb-domain">Animation &amp; Game Design</span>
-                            <span class="sb-honor" style="color: #F7BD2B;">Golden Animator</span>
-                        </div>
-                        <div class="star-badge-item">
-                            <span class="sb-domain">Blockchain</span>
-                            <span class="sb-honor" style="color: #E77BC7;">Purple Consensus</span>
-                        </div>
-                        <div class="star-badge-item">
-                            <span class="sb-domain">Quantum Computing</span>
-                            <span class="sb-honor" style="color: #FF5757;">Amber Entangler</span>
-                        </div>
-                        <div class="star-badge-item">
-                            <span class="sb-domain">Non-Tech [ITM]</span>
-                            <span class="sb-honor" style="color: #F8E7A2;">Spectrum CEO</span>
-                        </div>
-                    </div>
-
-                    <div class="award-stat">
-                        <span class="stat-highlight">8 Domain Star Honors</span>
-                        <span class="stat-sub">Grand Finale Award</span>
-                    </div>
-                </div>
-
-                <!-- Card 2: Overall Champions Trophy -->
-                <div class="award-card award-champions">
-                    <div class="award-badge">DEPARTMENT PRESTIGE</div>
-                    <h3 class="award-title">Overall Champions Trophy</h3>
-                    <p class="award-desc">
-                        The ultimate rolling championship trophy awarded to the domain securing the highest cumulative 
-                        points across all 12 events.
-                    </p>
-
-                    <div class="championship-metric-box">
-                        <div class="metric-row">
-                            <span class="metric-num">I.</span>
-                            <div class="metric-info">
-                                <span class="metric-title">First Place Victory</span>
-                                <span class="metric-pts">100 Points</span>
-                            </div>
-                        </div>
-                        <div class="metric-row">
-                            <span class="metric-num">II.</span>
-                            <div class="metric-info">
-                                <span class="metric-title">Second Place Runner-Up</span>
-                                <span class="metric-pts">60 Points</span>
-                            </div>
-                        </div>
-                        <div class="metric-row">
-                            <span class="metric-num">III.</span>
-                            <div class="metric-info">
-                                <span class="metric-title">Third Place Finish</span>
-                                <span class="metric-pts">30 Points</span>
-                            </div>
-                        </div>
-                        <div class="metric-row metric-flagship">
-                            <span class="metric-num">IV.</span>
-                            <div class="metric-info">
-                                <span class="metric-title">Spectrum CEO Champion</span>
-                                <span class="metric-pts">150 Bonus Points</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="award-stat stat-gold">
-                        <span class="stat-highlight">1 Supreme Domain Champion</span>
-                        <span class="stat-sub">Department Rolling Trophy</span>
-                    </div>
-                </div>
-            </div>
+      <!-- API Key Modal / Popover -->
+      <div class="ai-config-popover" id="ai-config-popover">
+        <span class="popover-title">Groq Cloud LLM Setup</span>
+        <p class="popover-desc">Configured with <code>qwen/qwen3.8-27b</code> + Whisper Voice Engine.</p>
+        <div class="popover-input-group">
+          <input type="password" id="input-groq-key" class="popover-input" placeholder="gsk_..." />
+          <button id="btn-save-groq-key" class="popover-btn">Save</button>
         </div>
-    </section>
+      </div>
 
-    <!-- ================================================================
-         SCENE 4: INAUGURATION & CONFIRMATION
-         ================================================================ -->
-    <section class="scene" id="s-close">
-        <div class="container text-center">
-            <div class="close-card">
-                <div class="close-header-lockup">
-                    <p class="close-eyebrow">KRISTU JAYANTI UNIVERSITY</p>
-                    <h3 class="close-school">School of Computational and Physical Sciences</h3>
-                    <h2 class="close-heading">Department of Computational Studies</h2>
-                    <div class="gold-divider"></div>
-                </div>
-
-                <div class="close-fest-box">
-                    <div class="close-fest-title">SYNCHROTECH 2026</div>
-                    <div class="close-fest-tag">DECODE THE SPECTRUM</div>
-                    <p class="close-fest-meta">Friday, 11th September 2026 · 9:00 AM · M1 Auditorium</p>
-                </div>
-
-                <p class="close-invite-msg">
-                    We cordially solicit your esteemed presence and blessings to formally inaugurate Synchrotech 2026.
-                </p>
-
-                <div class="btn-confirm-wrapper">
-                    <button class="btn-inaugurate" id="btn-inaugurate">
-                        <span class="btn-text">Confirm Inaugural Attendance</span>
-                    </button>
-                </div>
-
-                <div class="close-contacts">
-                    <p class="contact-line">Student Coordinators: Dhruv Soin (9560855503) &amp; Emy Elizabeth Oommen (9497052528)</p>
-                    <a href="https://instagram.com/synchrotech_dcs" target="_blank" rel="noopener" class="insta-link">Instagram: @synchrotech_dcs</a>
-                </div>
-            </div>
+      <!-- Chat Stream Messages -->
+      <div class="ai-messages-scroll" id="ai-messages-scroll">
+        <div class="ai-msg assistant">
+          <div class="msg-avatar"><i class="fa-solid fa-brain"></i></div>
+          <div class="msg-bubble">
+            <p>Welcome to <strong>Synchrotech 2026</strong>. I am your neural concierge. Click any spectral ray, click the mic to speak with me, or press <strong>Spacebar</strong> to reveal the official invitation pass!</p>
+          </div>
         </div>
-    </section>
+      </div>
 
-    <!-- Audio Atmosphere Controller -->
-    <div class="audio-control-pill" id="audio-control-pill" title="Toggle Sound">
-        <span class="ac-icon" id="ac-icon">🔊</span>
-        <span class="ac-label">Audio On</span>
+      <!-- Quick Prompt Chips -->
+      <div class="ai-chips-row">
+        <button class="ai-chip" data-query="Tell me about the AI/ML domain and events">🤖 AI/ML Domain</button>
+        <button class="ai-chip" data-query="What is the 5-day schedule?">📅 Schedule</button>
+        <button class="ai-chip" data-query="Who are the coordinators?">👥 Coordinators</button>
+        <button class="ai-chip" data-query="Reveal the official invitation pass">✦ Invitation</button>
+      </div>
+
+      <!-- Chat Input Bar -->
+      <div class="ai-input-bar">
+        <button id="btn-ai-mic" class="ai-mic-btn" title="Voice Input (Groq Whisper)">
+          <i class="fa-solid fa-microphone"></i>
+        </button>
+        <input type="text" id="ai-text-input" class="ai-input" placeholder="Ask SYNCHRO-AI anything..." autocomplete="off" />
+        <button id="btn-ai-send" class="ai-send-btn" title="Send Query">
+          <i class="fa-solid fa-arrow-up"></i>
+        </button>
+      </div>
     </div>
 
-    <!-- Confetti & Fireworks Layer -->
-    <canvas id="confetti-canvas"></canvas>
-
-    <!-- VIP Digital Patron Pass Modal -->
-    <div class="vip-modal-overlay" id="vip-modal-overlay">
-        <div class="vip-pass-card" id="vip-pass-card">
-            <button class="vip-close-btn" id="vip-close-btn" aria-label="Close Pass">&times;</button>
-            <div class="vip-pass-inner">
-                <div class="vip-pass-header">
-                    <span class="vip-eyebrow">KRISTU JAYANTI UNIVERSITY</span>
-                    <h3 class="vip-title">OFFICIAL INAUGURAL PATRON PASS</h3>
-                    <div class="vip-gold-line"></div>
-                </div>
-
-                <div class="vip-guest-details">
-                    <span class="vip-guest-label">Distinguished Dignitary</span>
-                    <h4 class="vip-guest-name">Fr. Dr. Augustine George CMI</h4>
-                    <p class="vip-guest-role">Vice Chancellor, Kristu Jayanti University</p>
-                </div>
-
-                <div class="vip-fest-box">
-                    <div class="vip-fest-name">SYNCHROTECH 2026</div>
-                    <div class="vip-fest-tag">DECODE THE SPECTRUM</div>
-                </div>
-
-                <div class="vip-meta-grid">
-                    <div class="vip-meta-item">
-                        <span class="vmi-label">Date &amp; Time</span>
-                        <span class="vmi-val">11 Sept 2026 · 9:00 AM</span>
-                    </div>
-                    <div class="vip-meta-item">
-                        <span class="vmi-label">Venue</span>
-                        <span class="vmi-val">M1 Auditorium</span>
-                    </div>
-                    <div class="vip-meta-item">
-                        <span class="vmi-label">Pass Reference</span>
-                        <span class="vmi-val">#PATRON-VC-2026</span>
-                    </div>
-                    <div class="vip-meta-item">
-                        <span class="vmi-label">Status</span>
-                        <span class="vmi-val" style="color: #34d399;">Confirmed ✓</span>
-                    </div>
-                </div>
-
-                <div class="vip-actions">
-                    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=SynchroTech+2026+Inauguration&dates=20260911T033000Z/20260911T063000Z&details=Official+Inauguration+of+SynchroTech+2026+by+Fr.+Dr.+Augustine+George+CMI.+Department+of+Computational+Studies.&location=M1+Auditorium,+Kristu+Jayanti+University,+Bengaluru" target="_blank" rel="noopener" class="vip-btn vip-cal-btn">
-                        <span>📅 Add to Google Calendar</span>
-                    </a>
-                </div>
-            </div>
-        </div>
+    <!-- Floating Interactive Glowing Orb -->
+    <div class="ai-floating-orb" id="ai-floating-orb" title="Talk with SYNCHRO-AI">
+      <div class="orb-ring ring-1"></div>
+      <div class="orb-ring ring-2"></div>
+      <div class="orb-core">
+        <i class="fa-solid fa-brain"></i>
+      </div>
+      <span class="orb-hover-tag">SYNCHRO-AI</span>
     </div>
+  </div>
 
-    <!-- Script dependencies -->
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="script.js"></script>
+  <!-- Ultra-Prestige Royal Ceremonial Academic Invitation Card -->
+  <div class="invitation-overlay" id="invitation-overlay">
+    <button class="invitation-close-btn" id="btn-close-invitation" aria-label="Close Invitation">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <div class="invitation-card-wrap">
+      <div class="regal-invitation-card" id="invitation-card">
+        <!-- Physical Metallic Gold Hologram Glare Sheen -->
+        <div class="card-gold-sheen"></div>
+        
+        <!-- Ornate Baroque Gold Corner Filigree -->
+        <div class="regal-corner-filigree top-left"></div>
+        <div class="regal-corner-filigree top-right"></div>
+        <div class="regal-corner-filigree bottom-left"></div>
+        <div class="regal-corner-filigree bottom-right"></div>
+
+        <!-- Inner Gold Guilloché Border Line -->
+        <div class="regal-inner-border">
+          
+          <!-- Top Academic University Seal & Header -->
+          <div class="regal-crest-header">
+            <img src="assets/logo.png" alt="Kristu Jayanti (Deemed to be University)" class="regal-banner-logo" />
+            <div class="regal-academic-dept">
+              <span class="regal-school">SCHOOL OF COMPUTATIONAL AND PHYSICAL SCIENCES</span>
+              <span class="regal-dept">DEPARTMENT OF COMPUTATIONAL STUDIES</span>
+            </div>
+          </div>
+
+          <div class="regal-gold-divider">
+            <span class="regal-divider-gem">✦</span>
+          </div>
+
+          <!-- Formal Ceremonial Proclamation -->
+          <div class="regal-proclamation-block">
+            <p class="regal-proclamation-intro">The Management, Faculty & Students cordially invite you to</p>
+            <span class="regal-fest-category">THE INTRA-UNIVERSITY TECHNICAL FEST</span>
+            
+            <h1 class="regal-fest-title">SYNCHROTECH</h1>
+            <h2 class="regal-fest-year">2026</h2>
+            
+            <div class="regal-theme-name">“ DECODE THE SPECTRUM ”</div>
+          </div>
+
+          <!-- Exclusive VIP Delegate Admit Plaque -->
+          <div class="regal-vip-plaque">
+            <div class="regal-plaque-head">
+              <span class="regal-pass-tag">HONORED DELEGATE PASS</span>
+              <span class="regal-pass-serial">PASS NO. KJU-ST26-VIP</span>
+            </div>
+            <input type="text" id="inv-custom-guest-name" class="regal-guest-input" value="Rev. Fr. Dr. Augustine George CMI" placeholder="Enter Invitee Name..." />
+            <span class="regal-admit-note">Principal, Kristu Jayanti University • Formal Inauguration Ceremony</span>
+          </div>
+
+          <!-- Master Date & Venue Grid -->
+          <div class="regal-meta-grid">
+            <div class="regal-meta-cell">
+              <i class="fa-solid fa-calendar-days regal-icon"></i>
+              <div class="regal-meta-text">
+                <span class="meta-label">DATE</span>
+                <span class="meta-val">11th September 2026</span>
+              </div>
+            </div>
+
+            <div class="regal-meta-cell">
+              <i class="fa-solid fa-building-columns regal-icon"></i>
+              <div class="regal-meta-text">
+                <span class="meta-label">VENUE</span>
+                <span class="meta-val">M1 Auditorium</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Formal Dignitaries & Student Coordinators Signatories Footer -->
+          <div class="regal-footer-signatories">
+            <div class="signatory-col">
+              <span class="sign-role">STUDENT COORDINATOR</span>
+              <span class="sign-name">Dhruv Soin</span>
+              <span class="sign-reg">24DTSA22 • 9560855503</span>
+            </div>
+
+            <div class="regal-actions-center">
+              <button id="btn-export-invitation-pass" class="regal-btn-gold">
+                <i class="fa-solid fa-download"></i>
+                <span>Export Pass (PNG)</span>
+              </button>
+            </div>
+
+            <div class="signatory-col right">
+              <span class="sign-role">STUDENT COORDINATOR</span>
+              <span class="sign-name">Emy Elizabeth Oommen</span>
+              <span class="sign-reg">24BCYA47 • 9497052528</span>
+            </div>
+          </div>
+
+          <div class="regal-dismiss-hint">Press SPACE or ESC to close</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom-Left Audio Control -->
+  <div class="bottom-left-dock">
+    <button id="btn-audio-toggle" class="dock-btn active" title="Toggle Soundscape & Guitar Strings">
+      <i class="fa-solid fa-volume-high"></i>
+    </button>
+  </div>
+
+  <!-- Module Entrypoint Script -->
+  <script type="module" src="script.js?v=2026_07"></script>
 </body>
 </html>
