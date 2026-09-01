@@ -1,0 +1,11 @@
+{
+  "name": "synchrotech26-invitation",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Synchrotech 2026 Interactive 3D Invitation & AI Concierge",
+  "scripts": {
+    "dev": "python -m http.server 3000"
+  },
+  "keywords": ["synchrotech", "kristu-jayanti", "threejs", "groq", "ai-assistant"],
+  "license": "ISC"
+}
