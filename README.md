@@ -17,10 +17,10 @@ When visiting faculty and leadership cabins, tap any number key on your keyboard
 | **`3`** | **Rev. Fr. Dr. Lijo P. Thomas, CMI** | Pro Vice Chancellor | `/?to=provc` |
 | **`4`** | **Dr. Aloysius Edward J.** | Registrar | `/?to=registrar` |
 | **`5`** | **Dr. Sevuga Pandian A** | Dean, School of Computational & Physical Sciences | `/?to=dean` |
-| **`6`** | **Dr. K. Kalaiselvi** | Head of the Department (HOD) | `/?to=hod` |
-| **`7`** | **Dr. Stephen A** | Program Coordinator | `/?to=stephen` |
-| **`8`** | **Dr. Shiva Prasad** | Faculty Coordinator | `/?to=shiva` |
-| **`9`** | **Prof. Ritika Shrimali** | Faculty Coordinator | `/?to=ritika` |
+| **`6`** | **Fr. Dr. Jais V Thomas CMI** | Chief Finance Officer | `/?to=cfo` |
+| **`7`** | **Fr. Joshy Mathew CMI** | Chief Human Resource Officer (CHRO) & Director, School of Humanities | `/?to=chro` |
+| **`8`** | **Fr. Dr. Marialal Joseph CMI** | Director, Research & Development & Global Collaborations | `/?to=research` |
+| **`9`** | **Fr. Deepu Joy CMI** | Director, Student Welfare Office (SWO) & LCA/Hostels | `/?to=deepu` |
 
 > **Custom Invitee:** You can also pass any custom name and role directly in the URL:  
 > `http://localhost:3000/?to=Dr.+John+Doe&role=Dean,+Faculty+of+Sciences`

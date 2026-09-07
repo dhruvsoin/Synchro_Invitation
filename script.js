@@ -462,20 +462,20 @@ document.addEventListener("DOMContentLoaded", () => {
         role: "Dean, School of Computational and Physical Sciences"
       },
       "6": {
-        name: "Dr. K. Kalaiselvi",
-        role: "Head of the Department, Department of Computational Studies"
+        name: "Fr. Dr. Jais V Thomas CMI",
+        role: "Chief Finance Officer"
       },
       "7": {
-        name: "Dr. Stephen A",
-        role: "Program Coordinator, Department of Computational Studies"
+        name: "Fr. Joshy Mathew CMI",
+        role: "Chief Human Resource Officer (CHRO) and Director, School of Humanities and Social Sciences"
       },
       "8": {
-        name: "Dr. Shiva Prasad",
-        role: "Faculty Coordinator, Department of Computational Studies"
+        name: "Fr. Dr. Marialal Joseph CMI",
+        role: "Director, Research & Development & Director, Centre for Global Networking and Collaborations"
       },
       "9": {
-        name: "Prof. Ritika Shrimali",
-        role: "Faculty Coordinator, Department of Computational Studies"
+        name: "Fr. Deepu Joy CMI",
+        role: "Director, Student Welfare Office & Director, LCA and Hostels"
       },
       // Aliases for URL parameters (?to=...)
       "chancellor": {
@@ -522,25 +522,41 @@ document.addEventListener("DOMContentLoaded", () => {
         name: "Dr. Sevuga Pandian A",
         role: "Dean, School of Computational and Physical Sciences"
       },
-      "hod": {
-        name: "Dr. K. Kalaiselvi",
-        role: "Head of the Department, Department of Computational Studies"
+      "cfo": {
+        name: "Fr. Dr. Jais V Thomas CMI",
+        role: "Chief Finance Officer"
       },
-      "kalaiselvi": {
-        name: "Dr. K. Kalaiselvi",
-        role: "Head of the Department, Department of Computational Studies"
+      "jais": {
+        name: "Fr. Dr. Jais V Thomas CMI",
+        role: "Chief Finance Officer"
       },
-      "stephen": {
-        name: "Dr. Stephen A",
-        role: "Program Coordinator, Department of Computational Studies"
+      "chro": {
+        name: "Fr. Joshy Mathew CMI",
+        role: "Chief Human Resource Officer (CHRO) and Director, School of Humanities and Social Sciences"
       },
-      "shiva": {
-        name: "Dr. Shiva Prasad",
-        role: "Faculty Coordinator, Department of Computational Studies"
+      "joshy": {
+        name: "Fr. Joshy Mathew CMI",
+        role: "Chief Human Resource Officer (CHRO) and Director, School of Humanities and Social Sciences"
       },
-      "ritika": {
-        name: "Prof. Ritika Shrimali",
-        role: "Faculty Coordinator, Department of Computational Studies"
+      "marialal": {
+        name: "Fr. Dr. Marialal Joseph CMI",
+        role: "Director, Research & Development & Director, Centre for Global Networking and Collaborations"
+      },
+      "research": {
+        name: "Fr. Dr. Marialal Joseph CMI",
+        role: "Director, Research & Development & Director, Centre for Global Networking and Collaborations"
+      },
+      "rnd": {
+        name: "Fr. Dr. Marialal Joseph CMI",
+        role: "Director, Research & Development & Director, Centre for Global Networking and Collaborations"
+      },
+      "deepu": {
+        name: "Fr. Deepu Joy CMI",
+        role: "Director, Student Welfare Office & Director, LCA and Hostels"
+      },
+      "swo": {
+        name: "Fr. Deepu Joy CMI",
+        role: "Director, Student Welfare Office & Director, LCA and Hostels"
       }
     };
 

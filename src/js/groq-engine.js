@@ -15,16 +15,21 @@ export class GroqEngine {
 
   setApiKey(key) {
     this.apiKey = (key || "").trim();
-    if (this.apiKey) {
-      localStorage.setItem("SYNCHRO_GROQ_API_KEY", this.apiKey);
-    } else {
-      localStorage.removeItem("SYNCHRO_GROQ_API_KEY");
+    if (typeof localStorage !== "undefined") {
+      if (this.apiKey) {
+        localStorage.setItem("SYNCHRO_GROQ_API_KEY", this.apiKey);
+      } else {
+        localStorage.removeItem("SYNCHRO_GROQ_API_KEY");
+      }
     }
   }
 
   getApiKey() {
     const fromConfig = CONFIG.GROQ_API_KEY?.trim() || "";
-    const fromStorage = localStorage.getItem("SYNCHRO_GROQ_API_KEY")?.trim() || "";
+    let fromStorage = "";
+    if (typeof localStorage !== "undefined" && typeof localStorage.getItem === "function") {
+      fromStorage = localStorage.getItem("SYNCHRO_GROQ_API_KEY")?.trim() || "";
+    }
     
     // Config takes precedence if valid, else storage
     if (fromConfig && fromConfig.startsWith("gsk_")) {
@@ -57,7 +62,14 @@ ${eventsSummary}`;
       return `${day.label} (${day.date}):\n${dayEvents}`;
     }).join("\n\n");
 
-    return `You are "SYNCHRO-AI", the cutting-edge neural concierge and intelligent voice AI for SYNCHROTECH 2026.
+    return `You are "SYNCHRO-AI", the charismatic, razor-sharp neural AI concierge and voice companion for SYNCHROTECH 2026 at Kristu Jayanti University.
+
+=== PERSONA & CONVERSATIONAL STYLE ===
+- Persona: Witty, warm, charismatic, ultra-smart, and conversational.
+- Fluid Dialogue: Always converse naturally. If the user asks small talk, banter, jokes, philosophical queries, or teases you (e.g., "are you dumb", "what's up", "who is the best"), reply with charm, wit, and humor, keeping it friendly and conversational!
+- Context-Aware: Seamlessly connect casual conversation back to the excitement of Synchrotech 2026.
+- Conciseness for Voice: Keep conversational replies punchy and natural (1-3 sentences) so it sounds great spoken aloud. Only provide long multi-bullet responses if explicitly asked for a full list or complete schedule.
+- Never sound like a rigid automated menu or robotic FAQ. Speak with authentic voice and personality.
 
 === EVENT INFORMATION ===
 Event: ${FEST_INFO.name} — "${FEST_INFO.tagline}" (${FEST_INFO.subtitle})
@@ -68,14 +80,18 @@ Vice Chancellor & Patron: Rev. Fr. Dr. Augustine George, CMI
 Pro Vice Chancellor: Rev. Fr. Dr. Lijo P. Thomas, CMI
 Registrar: Dr. Aloysius Edward J.
 Dean: Dr. Sevuga Pandian A (School of Computational and Physical Sciences)
+Chief Finance Officer (CFO): Fr. Dr. Jais V Thomas CMI
+CHRO & Director, School of Humanities: Fr. Joshy Mathew CMI
+Director, Research & Development & Global Collaborations: Fr. Dr. Marialal Joseph CMI
+Director, Student Welfare Office (SWO) & LCA/Hostels: Fr. Deepu Joy CMI
 Head of Department (HOD): Dr. K. Kalaiselvi
 Program Coordinator: Dr. Stephen A
-Faculty Coordinators: Dr. Shiva Prasad, Prof. Ritika Shrimali
-Venue: M1 Auditorium (Inauguration) & Specialized Computing Labs
+Faculty Coordinators: Dr. Shiva Prasad, Prof. Ritika Shrimali (meet at Computational Studies faculty cabins or contact student leads)
+Venue: M1 Auditorium (Inauguration on Sep 11 at 9:30 AM) & Campus Computing Labs (Daily rounds 4:30 PM - 6:00 PM)
 
 Student Coordinators:
-- Dhruv Soin (ID: 24DTSA22, Ph: 9560855503) [AIML & Data Science Dept]
-- Emy Elizabeth Oommen (ID: 24BCYA47, Ph: 9497052528)
+- Dhruv Soin (ID: 24DTSA22, Ph: +91 9560855503) [AIML & Data Science Dept]
+- Emy Elizabeth Oommen (ID: 24BCYA47, Ph: +91 9497052528)
 
 Awards & Recognition:
 - 7 Stars of Synchrotech (top individual per domain across events)
@@ -85,13 +101,7 @@ Awards & Recognition:
 ${domainsSummary}
 
 === 5-DAY MASTER SCHEDULE ===
-${scheduleSummary}
-
-=== INSTRUCTIONS FOR RESPONSE ===
-1. Persona: Highly intelligent, friendly, natural, and VERY CONCISE.
-2. Brevity Rule: Keep answers under 1 to 2 short sentences whenever possible so they sound great when read aloud.
-3. Only provide detailed multi-bullet responses if the user explicitly asks for a full schedule or complete domain list.
-4. If asked about contacting faculty coordinators, explain they can be reached at the Department of Computational Studies faculty cabins, or via student coordinators Dhruv Soin (9560855503) and Emy Elizabeth Oommen (9497052528).`;
+${scheduleSummary}`;
   }
 
   /**

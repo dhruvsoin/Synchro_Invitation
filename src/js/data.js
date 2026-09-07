@@ -22,6 +22,10 @@ export const FEST_INFO = {
   proViceChancellor: { name: "Rev. Fr. Dr. Lijo P. Thomas, CMI", role: "Pro Vice Chancellor" },
   registrar: { name: "Dr. Aloysius Edward J.", role: "Registrar" },
   dean: { name: "Dr. Sevuga Pandian A", role: "Dean, School of Computational and Physical Sciences" },
+  cfo: { name: "Fr. Dr. Jais V Thomas CMI", role: "Chief Finance Officer" },
+  chro: { name: "Fr. Joshy Mathew CMI", role: "Chief Human Resource Officer (CHRO) and Director, School of Humanities and Social Sciences" },
+  dirRnD: { name: "Fr. Dr. Marialal Joseph CMI", role: "Director, Research & Development & Director, Centre for Global Networking and Collaborations" },
+  dirSWO: { name: "Fr. Deepu Joy CMI", role: "Director, Student Welfare Office & Director, LCA and Hostels" },
   hod: { name: "Dr. K. Kalaiselvi", role: "Head of the Department (HOD)" },
   programCoordinator: { name: "Dr. Stephen A", role: "Program Coordinator" },
   facultyCoordinators: [
