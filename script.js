@@ -102,21 +102,31 @@ document.addEventListener("DOMContentLoaded", () => {
     const panel = document.getElementById("domain-side-panel");
     if (!panel) return;
 
-    // Header Color & Tag
-    const tagEl = document.getElementById("panel-domain-tag");
+    // Set panel theme color variable
+    panel.style.setProperty("--domain-color", domain.color);
+
+    // Header Color, Badge & Ray Order Tag
+    const colorDot = document.getElementById("panel-color-dot");
+    const badgeEl = document.getElementById("panel-domain-badge");
+    const rayTagEl = document.getElementById("panel-ray-tag");
     const titleEl = document.getElementById("panel-domain-title");
     const taglineEl = document.getElementById("panel-domain-tagline");
     const loreEl = document.getElementById("panel-domain-lore");
     const leadEl = document.getElementById("panel-lead-name");
     const leadIdEl = document.getElementById("panel-lead-id");
     const phoneEl = document.getElementById("panel-lead-phone");
-    const callBtn = document.getElementById("panel-btn-call");
-    const eventsList = document.getElementById("panel-events-list");
+    const eventsList = document.getElementById("panel-events-container") || document.getElementById("panel-events-list");
 
-    if (tagEl) {
-      tagEl.textContent = domain.colorName + " SPECTRUM";
-      tagEl.style.color = domain.color;
-      tagEl.style.borderColor = domain.color;
+    if (colorDot) {
+      colorDot.style.background = domain.color;
+      colorDot.style.boxShadow = `0 0 12px ${domain.color}`;
+    }
+    if (badgeEl) {
+      badgeEl.textContent = domain.name;
+      badgeEl.style.color = domain.color;
+    }
+    if (rayTagEl) {
+      rayTagEl.textContent = `${domain.colorName.toUpperCase()} RAY // ORDER ${domain.spectralOrder}`;
     }
     if (titleEl) {
       titleEl.textContent = domain.fullName;
@@ -128,32 +138,40 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (leadEl) leadEl.textContent = domain.head.name;
     if (leadIdEl) leadIdEl.textContent = domain.head.id;
-    if (phoneEl) phoneEl.textContent = `+91 ${domain.head.phone}`;
-    if (callBtn) callBtn.href = `tel:+91${domain.head.phone}`;
+    if (phoneEl) {
+      phoneEl.href = `tel:+91${domain.head.phone}`;
+      phoneEl.title = `Call ${domain.head.name} (+91 ${domain.head.phone})`;
+    }
 
     // Render Events & Dynamic Rounds Accordion
     if (eventsList) {
       eventsList.innerHTML = "";
       domain.events.forEach((ev) => {
         const evCard = document.createElement("div");
-        evCard.className = "domain-event-card";
-        evCard.style.borderLeftColor = domain.color;
+        evCard.className = "side-event-card";
+        evCard.style.borderLeft = `3px solid ${domain.color}`;
 
-        const roundsHtml = ev.rounds.map((r) => `
-          <div class="event-round-pill">
-            <span class="round-badge">R${r.num}</span>
-            <span class="round-name">${escapeHtml(r.name)}</span>
-            <span class="round-desc">${escapeHtml(r.desc)}</span>
+        const roundsHtml = ev.rounds.map((r, idx) => `
+          <div class="side-event-round">
+            <span style="color:${domain.color}; font-weight:700;">R${idx + 1}: ${escapeHtml(r.name || `Round ${idx + 1}`)}</span> — <span style="color:var(--text-dim);">${escapeHtml(r.desc || "")}</span>
           </div>
         `).join("");
 
-        evCard.innerHTML = `
-          <div class="event-card-head">
-            <h4 class="event-name">${escapeHtml(ev.name)}</h4>
-            <span class="event-type-badge">${escapeHtml(ev.type)}</span>
+        const schedHtml = ev.schedule && ev.schedule.length > 0 ? `
+          <div class="side-event-sched">
+            <i class="fa-regular fa-clock" style="margin-right:4px;"></i>
+            ${ev.schedule.map(s => `${escapeHtml(s.day)}: ${escapeHtml(s.time)} (${escapeHtml(s.venue)})`).join(" • ")}
           </div>
-          <p class="event-tagline">"${escapeHtml(ev.tagline)}"</p>
-          <div class="event-rounds-grid">${roundsHtml}</div>
+        ` : "";
+
+        evCard.innerHTML = `
+          <div class="side-event-head">
+            <h4 class="side-event-name">${escapeHtml(ev.name)}</h4>
+            <span class="side-event-badge">${escapeHtml(ev.type)}</span>
+          </div>
+          ${ev.tagline ? `<p class="side-event-tagline">"${escapeHtml(ev.tagline)}"` : ""}
+          <div class="side-event-rounds" style="margin-top:6px; display:flex; flex-direction:column; gap:4px;">${roundsHtml}</div>
+          ${schedHtml}
         `;
         eventsList.appendChild(evCard);
       });

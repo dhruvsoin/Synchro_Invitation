@@ -871,16 +871,49 @@ export class MasterCinemaStageEngine {
 
   drawIdlePulseDot() {
     const cx = this.crystal.x;
-    const cy = this.crystal.y + this.crystal.floatY + this.crystal.size + 36;
+    const cy = this.crystal.y + this.crystal.floatY + this.crystal.size + 48;
     const pulse = (Math.sin(this.time * 3.5) + 1) / 2;
+    const isMobile = this.width < 768;
 
     this.ctx.save();
+
+    // Subtle connecting energy pulse line from crystal to instruction
     this.ctx.beginPath();
-    this.ctx.arc(cx, cy, 3 + pulse * 2, 0, Math.PI * 2);
-    this.ctx.fillStyle = `rgba(0, 210, 255, ${0.4 + pulse * 0.6})`;
+    this.ctx.moveTo(cx, this.crystal.y + this.crystal.floatY + this.crystal.size);
+    this.ctx.lineTo(cx, cy - 16);
+    this.ctx.strokeStyle = `rgba(0, 210, 255, ${0.15 + pulse * 0.25})`;
+    this.ctx.lineWidth = 1.5;
+    this.ctx.setLineDash([4, 4]);
+    this.ctx.stroke();
+    this.ctx.setLineDash([]);
+
+    // Glowing instruction pill
+    const text = isMobile ? "TAP CRYSTAL TO ACTIVATE" : "✦ CLICK THE CRYSTAL TO ACTIVATE THE SPECTRUM ✦";
+    this.ctx.font = isMobile ? "700 10px 'Space Grotesk', sans-serif" : "700 11px 'Space Grotesk', sans-serif";
+    this.ctx.textAlign = "center";
+    this.ctx.textBaseline = "middle";
+
+    const textWidth = this.ctx.measureText(text).width;
+    const pillW = textWidth + (isMobile ? 24 : 36);
+    const pillH = isMobile ? 26 : 30;
+
+    // Pill background & border
+    this.ctx.beginPath();
+    this.ctx.roundRect(cx - pillW / 2, cy - pillH / 2, pillW, pillH, pillH / 2);
+    this.ctx.fillStyle = `rgba(4, 8, 24, ${0.82 + pulse * 0.12})`;
+    this.ctx.strokeStyle = `rgba(0, 210, 255, ${0.45 + pulse * 0.5})`;
+    this.ctx.lineWidth = 1.4;
     this.ctx.shadowColor = "#00D2FF";
-    this.ctx.shadowBlur = 12;
+    this.ctx.shadowBlur = 14 + pulse * 10;
     this.ctx.fill();
+    this.ctx.stroke();
+
+    // Inner Text
+    this.ctx.fillStyle = `rgba(255, 255, 255, ${0.9 + pulse * 0.1})`;
+    this.ctx.shadowColor = "#00D2FF";
+    this.ctx.shadowBlur = 8;
+    this.ctx.fillText(text, cx, cy);
+
     this.ctx.restore();
   }
 }

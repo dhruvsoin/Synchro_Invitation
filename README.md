@@ -56,17 +56,17 @@ When visiting faculty and leadership cabins, tap any number key on your keyboard
 - **Program Coordinator:** Dr. Stephen A
 - **Faculty Coordinators:** Dr. Shiva Prasad & Prof. Ritika Shrimali
 - **Student Coordinators:**
-  - **Dhruv Soin** (ID: 24DTSA22 | 📞 +91 9560855503) [AIML & Data Science]
-  - **Emy Elizabeth Oommen** (ID: 24BCYA47 | 📞 +91 9497052528) [Cybersecurity & Cloud]
+  - **Dhruv Soin** (ID: 24DTSA22 | 📞 +91 9560855503) [Data Science & AI]
+  - **Emy Elizabeth Oommen** (ID: 24BCYA47 | 📞 +91 9497052528) [Cyber Security & Cloud]
 
 ---
 
 ## 🌈 The 8 Spectral Domains & Leads
 
-1. **AI/ML (Red Spectrum):** Justin Johnson (24AIML27 | 📞 7696811958) — *Zero Verdict* & *Overdrive*
+1. **AI & Machine Learning (Red Spectrum):** Justin Johnson (24AIML27 | 📞 7696811958) — *Zero Verdict* & *Overdrive*
 2. **Quantum Computing (Orange Spectrum):** Aadhithya Rajesh (24DTSA02 | 📞 9995882264) — *Qubit Quest*
 3. **Animation & Game Design (Yellow Spectrum):** Shravya Hegde (24BCYB06 | 📞 9663366888) — *Character Jam*
-4. **Cybersecurity (Green Spectrum):** Adith Joel (24BCYA13 | 📞 8884002302) — *CTF* & *ThreatX*
+4. **Cyber Security (Green Spectrum):** Adith Joel (24BCYA13 | 📞 8884002302) — *CTF* & *ThreatX*
 5. **Cloud Computing (Blue Spectrum):** Divya Patel (24BCLA16 | 📞 9620877001) — *Architecture Pitch* & *Cloud Cipher*
 6. **Data Science (Indigo Spectrum):** Subham Malla (24DTSA45 | 📞 9903965582) — *DataForge* & *The Query Detective*
 7. **Blockchain (Violet Spectrum):** Tanya Nair (24BCYA51 | 📞 9845123456) — *BlockTrack*

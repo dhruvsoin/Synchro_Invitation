@@ -164,8 +164,8 @@ export const DOMAINS = [
   },
   {
     id: "cybersecurity",
-    name: "Cybersecurity",
-    fullName: "Cybersecurity",
+    name: "Cyber Security",
+    fullName: "Cyber Security",
     spectralOrder: 4,
     colorName: "Green",
     color: "#00FF66",
@@ -375,7 +375,7 @@ export const SCHEDULE_DAYS = [
     label: "Day 1",
     events: [
       { domain: "Data Science", event: "The Query Detective", time: "4:30 PM – 6:00 PM", venue: "M203 / M4 LAB" },
-      { domain: "Cybersecurity", event: "CTF", time: "4:30 PM – 6:00 PM", venue: "M204 / M205" },
+      { domain: "Cyber Security", event: "CTF", time: "4:30 PM – 6:00 PM", venue: "M204 / M205" },
       { domain: "AI/ML", event: "Overdrive", time: "4:30 PM – 6:00 PM", venue: "M201 / M5 LAB" },
       { domain: "Cloud Computing", event: "Cloud Cipher", time: "4:30 PM – 6:00 PM", venue: "M206" },
       { domain: "Blockchain", event: "GenesisChain Quest", time: "4:30 PM – 6:00 PM", venue: "M302 / M303 / M304 / M305" }
@@ -387,7 +387,7 @@ export const SCHEDULE_DAYS = [
     label: "Day 2",
     events: [
       { domain: "Data Science", event: "DataForge", time: "4:30 PM – 6:00 PM", venue: "M202" },
-      { domain: "Cybersecurity", event: "ThreatX", time: "4:30 PM – 6:00 PM", venue: "M303 / M201" },
+      { domain: "Cyber Security", event: "ThreatX", time: "4:30 PM – 6:00 PM", venue: "M303 / M201" },
       { domain: "AI/ML", event: "Zero Verdict", time: "4:30 PM – 6:00 PM", venue: "M4 LAB" },
       { domain: "Cloud Computing", event: "Architecture Pitch", time: "4:30 PM – 6:00 PM", venue: "M203" },
       { domain: "Quantum Computing", event: "Qubit Quest", time: "4:30 PM – 6:00 PM", venue: "M5 LAB / M204" },
@@ -399,7 +399,7 @@ export const SCHEDULE_DAYS = [
     date: "9 September 2026",
     label: "Day 3",
     events: [
-      { domain: "Cybersecurity", event: "CTF", time: "4:30 PM – 6:00 PM", venue: "M4 LAB" },
+      { domain: "Cyber Security", event: "CTF", time: "4:30 PM – 6:00 PM", venue: "M4 LAB" },
       { domain: "AI/ML", event: "Overdrive", time: "4:30 PM – 6:00 PM", venue: "M201" },
       { domain: "Cloud Computing", event: "Cloud Cipher", time: "4:30 PM – 6:00 PM", venue: "M203" },
       { domain: "Blockchain", event: "GenesisChain Quest", time: "4:30 PM – 6:00 PM", venue: "M204" }
@@ -424,7 +424,7 @@ export const SCHEDULE_DAYS = [
     label: "Day 5 — Grand Finale",
     events: [
       { domain: "Cloud Computing", event: "Architecture Pitch", time: "9:00 AM – 3:00 PM", venue: "M202 (Finale)" },
-      { domain: "Cybersecurity", event: "ThreatX", time: "9:00 AM – 3:00 PM", venue: "M203 (Finale)" },
+      { domain: "Cyber Security", event: "ThreatX", time: "9:00 AM – 3:00 PM", venue: "M203 (Finale)" },
       { domain: "Data Science", event: "DataForge", time: "9:00 AM – 3:00 PM", venue: "M201 (Finale)" },
       { domain: "AI/ML", event: "Zero Verdict", time: "11:00 AM – 1:00 PM", venue: "M4 LAB (Finale)" },
       { domain: "Spectrum CEO", event: "Spectrum CEO", time: "1:00 PM – 3:00 PM", venue: "M2 AUDITORIUM (Grand Finale)" }

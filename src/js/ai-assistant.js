@@ -11,10 +11,10 @@ import { CONFIG } from "./config.js";
 
 export class AIAssistant {
   constructor(options = {}) {
-    this.onSpeakingStateChange = options.onSpeakingStateChange || (() => {});
-    this.onStreamToken = options.onStreamToken || (() => {});
-    this.onStreamComplete = options.onStreamComplete || (() => {});
-    this.onVoiceInputResult = options.onVoiceInputResult || (() => {});
+    this.onSpeakingStateChange = options.onSpeakingStateChange || (() => { });
+    this.onStreamToken = options.onStreamToken || (() => { });
+    this.onStreamComplete = options.onStreamComplete || (() => { });
+    this.onVoiceInputResult = options.onVoiceInputResult || (() => { });
 
     this.synth = (typeof window !== "undefined" && window.speechSynthesis) ? window.speechSynthesis : null;
     this.availableVoices = [];
@@ -136,7 +136,7 @@ export class AIAssistant {
         "Natural", "Neural", "Jenny", "Aria", "Guy", "Google UK English Female",
         "Google US English", "Samantha", "Ava", "Victoria", "Oliver", "George", "Emma"
       ];
-      
+
       let bestVoice = null;
       for (const kw of naturalKeywords) {
         bestVoice = this.availableVoices.find(v => v.name.includes(kw) && v.lang.startsWith("en"));
@@ -163,7 +163,7 @@ export class AIAssistant {
     if (this.synth) {
       try {
         this.synth.cancel(); // Flush any stale speech synthesis queue
-      } catch (e) {}
+      } catch (e) { }
     }
 
     populateVoices();
@@ -215,7 +215,7 @@ export class AIAssistant {
           return true;
         } catch (e) {
           console.warn("Native SpeechRecognition retry:", e);
-          try { this.speechRecognition.stop(); } catch (err) {}
+          try { this.speechRecognition.stop(); } catch (err) { }
           // Fall through to MediaRecorder + Whisper
         }
       }
@@ -229,10 +229,10 @@ export class AIAssistant {
       this.audioStream = await navigator.mediaDevices.getUserMedia({ audio: true });
       this.audioChunks = [];
 
-      const mimeType = MediaRecorder.isTypeSupported("audio/webm;codecs=opus") 
-        ? "audio/webm;codecs=opus" 
+      const mimeType = MediaRecorder.isTypeSupported("audio/webm;codecs=opus")
+        ? "audio/webm;codecs=opus"
         : MediaRecorder.isTypeSupported("audio/webm") ? "audio/webm" : "";
-      
+
       this.mediaRecorder = mimeType ? new MediaRecorder(this.audioStream, { mimeType }) : new MediaRecorder(this.audioStream);
 
       const inputEl = document.getElementById("ai-text-input");
@@ -365,7 +365,7 @@ export class AIAssistant {
     if (this.speechRecognition && this.isSpeechRecognitionActive) {
       try {
         this.speechRecognition.stop();
-      } catch (e) {}
+      } catch (e) { }
       this.isSpeechRecognitionActive = false;
     }
 
@@ -373,7 +373,7 @@ export class AIAssistant {
       try {
         this.mediaRecorder.requestData();
         this.mediaRecorder.stop();
-      } catch (e) {}
+      } catch (e) { }
     }
 
     this.isRecording = false;
@@ -391,7 +391,7 @@ export class AIAssistant {
       this.audioStream = null;
     }
     if (this.audioContext && this.audioContext.state !== "closed") {
-      this.audioContext.close().catch(() => {});
+      this.audioContext.close().catch(() => { });
       this.audioContext = null;
     }
   }
@@ -438,7 +438,7 @@ export class AIAssistant {
       if (this.synth.paused) {
         this.synth.resume();
       }
-    } catch (e) {}
+    } catch (e) { }
 
     const currentSessionId = ++this.speechSessionId;
 
@@ -514,7 +514,7 @@ export class AIAssistant {
 
       try {
         if (this.synth.paused) this.synth.resume();
-      } catch (e) {}
+      } catch (e) { }
       this.synth.speak(utterance);
     };
 
@@ -682,7 +682,7 @@ export class AIAssistant {
     }
 
     if (has("what can you do", "what are your features", "how to use", "help me", "commands", "menu", "instructions")) {
-      return `You can talk with me in real-time (Press **V** or tap the mic), ask about any of our **8 Domains** (AI/ML, Quantum, Cybersecurity, etc.), check event rules & schedules, or press **Spacebar** to reveal the royal 3D invitation card!`;
+      return `You can talk with me in real-time (Press **V** or tap the mic), ask about any of our **8 Domains** (AI/ML, Quantum, Cyber Security, etc.), check event rules & schedules, or press **Spacebar** to reveal the royal 3D invitation card!`;
     }
 
     // 5. Fun & Easter Eggs ("tell me a joke", "favorite domain", "meaning of life", "can you dance")
@@ -696,7 +696,7 @@ export class AIAssistant {
     }
 
     if (has("favorite domain", "favourite domain", "best domain", "which domain is best", "what do you recommend", "favorite event", "best event")) {
-      return `As a neural AI, I'm naturally drawn to **AI/ML (Red Spectrum)** and **Quantum (Orange Spectrum)**! But if you love high stakes, **Spectrum CEO** and **Capture The Flag (CTF)** in Cybersecurity are absolute musts!`;
+      return `As a neural AI, I'm naturally drawn to **AI/ML (Red Spectrum)** and **Quantum (Orange Spectrum)**! But if you love high stakes, **Spectrum CEO** and **Capture The Flag (CTF)** in Cyber Security are absolute musts!`;
     }
 
     if (has("meaning of life", "secret of life", "42")) {
@@ -714,7 +714,7 @@ export class AIAssistant {
       return `AI & Machine Learning power neural systems to learn patterns and generate intelligent actions. Put your prompt mastery to the test in **Overdrive** or dominate the AI auction in **Zero Verdict**!`;
     }
 
-    if (has("what is ctf", "what is capture the flag", "what is cybersecurity", "what is hacking", "ethical hacking")) {
+    if (has("what is ctf", "what is capture the flag", "what is cybersecurity", "what is cyber security", "what is hacking", "ethical hacking")) {
       ctx.lastDomain = "cyber";
       return `Capture The Flag (CTF) is a hands-on cybersecurity competition where participants solve cryptographic puzzles and exploit web vulnerabilities. Dive into **CTF** and **ThreatX** with **Adith Joel**!`;
     }
@@ -752,7 +752,7 @@ export class AIAssistant {
     }
 
     // 8. Specific Domains & Follow-ups
-    
+
     // AI & Machine Learning
     if (has("aiml", "ai/ml", "machine learning", "justin", "zero verdict", "overdrive", "red ray", "red spectrum") || (has("ai") && !has("synchro-ai", "blockchain"))) {
       ctx.lastDomain = "aiml";
@@ -771,10 +771,10 @@ export class AIAssistant {
       return `**Shravya Hegde** (ID: 24DTSA26, Ph: 9632422709) leads **Animation and Game Design** (Yellow Spectrum), featuring **Character Jam** sketch and Scratch game prototyping challenge!`;
     }
 
-    // Cybersecurity
+    // Cyber Security
     if (has("cyber", "security", "ctf", "threatx", "adith", "green spectrum", "green ray", "court", "hack")) {
       ctx.lastDomain = "cyber";
-      return `**Adith Joel** (ID: 24BCYA38, Ph: 7306233480) leads **Cybersecurity** (Green Spectrum), featuring hands-on **Capture The Flag (CTF)** and the thrilling **ThreatX** cyber mock trial!`;
+      return `**Adith Joel** (ID: 24BCYA38, Ph: 7306233480) leads **Cyber Security** (Green Spectrum), featuring hands-on **Capture The Flag (CTF)** and the thrilling **ThreatX** cyber mock trial!`;
     }
 
     // Cloud Computing
@@ -807,7 +807,7 @@ export class AIAssistant {
         aiml: `In **AI & Machine Learning**, the lead is **Justin Johnson** (9741270278). The events are **Zero Verdict** (R1: AI Auction, R2: Ethics Triage) and **Overdrive** (R1: Code Prompting, R2: Jailbreak Bypass).`,
         quantum: `In **Quantum Computing**, the lead is **Aadhithya Rajesh** (8921868352). The event is **Qubit Quest** (R1: Paradox Riddles, R2: Superposition Labyrinth).`,
         animation: `In **Animation & Game Design**, the lead is **Shravya Hegde** (9632422709). The event is **Character Jam** (R1: 2D Concept Sketch, R2: Scratch Arcade Prototype).`,
-        cyber: `In **Cybersecurity**, the lead is **Adith Joel** (7306233480). The events are **Capture The Flag** (R1: Web Exploits, R2: Reverse Engineering) and **ThreatX** (R1: Cyber Forensics, R2: Courtroom Defense).`,
+        cyber: `In **Cyber Security**, the lead is **Adith Joel** (7306233480). The events are **Capture The Flag** (R1: Web Exploits, R2: Reverse Engineering) and **ThreatX** (R1: Cyber Forensics, R2: Courtroom Defense).`,
         cloud: `In **Cloud Computing**, the lead is **Divya Patel** (8431872166). The events are **Architecture Pitch** (R1: High-Availability Design, R2: Cost Optimizer) and **Cloud Cipher** (R1: Terminal Race, R2: IAM Breakdown).`,
         datascience: `In **Data Science**, the lead is **Subham Malla** (7204584285). The events are **DataForge** (R1: Cleanse & Model, R2: Executive Dashboard) and **The Query Detective** (R1: Murder Case SQL, R2: Ransom Mystery).`,
         blockchain: `In **Blockchain**, the lead is **Tanya Nair** (9945722378). The event is **BlockTrack** (R1: Smart Contract Audit, R2: Web3 Founder Pitch).`,
@@ -877,15 +877,16 @@ export class AIAssistant {
 
     // 13. All Domains Summary
     if (has("color", "spectrum", "all domain", "list domain", "what are the domain", "domains", "themes")) {
-      return `Synchrotech 2026 features 8 Domains: **AI/ML (Red), Quantum (Orange), Animation (Yellow), Cybersecurity (Green), Cloud (Blue), Data Science (Indigo), Blockchain (Violet), and Spectrum CEO**! Click any ray on screen to explore.`;
+      return `Synchrotech 2026 features 8 Domains: **AI/ML (Red), Quantum (Orange), Animation (Yellow), Cyber Security (Green), Cloud (Blue), Data Science (Indigo), Blockchain (Violet), and Spectrum CEO**! Click any ray on screen to explore.`;
     }
 
     // 14. Conversational Dynamic Intelligent Fallback
     const dynamicFallbacks = [
-      `I'm listening! You can ask me about any domain (like AI/ML or Cybersecurity), event schedules, faculty coordinators, or press **Spacebar** for your royal VIP pass.`,
+      `I'm listening! You can ask me about any domain (like AI/ML or Cyber Security), event schedules, faculty coordinators, or press **Spacebar** for your royal VIP pass.`,
       `That's an interesting point! What aspect of **Synchrotech 2026** would you like to explore—events, domains, coordinators, or the master schedule?`,
       `I'm here to help you navigate Synchrotech 2026! Ask me about domain leads, event rules, prizes, or press **Spacebar** to see the 3D invitation pass.`
     ];
+    return dynamicFallbacks[Math.floor(Math.random() * dynamicFallbacks.length)];
     return dynamicFallbacks[Math.floor(Math.random() * dynamicFallbacks.length)];
   }
 }
